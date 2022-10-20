@@ -483,7 +483,7 @@ Create and return a new image for a spot specified by id.
 - Request
 
   - Method: POST
-  - URL: /spotsImages
+  - URL: /spots/:spotId/images
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -869,7 +869,7 @@ Create and return a new image for a review specified by id.
 - Request
 
   - Method: POST
-  - URL: /reviewImages
+  - URL: /spots/:reviewId/images
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -1412,7 +1412,7 @@ Delete an existing image for a Spot.
 - Request
 
   - Method: DELETE
-  - URL: /spotImages
+  - URL: /images/:spotId
   - Body: none
 
 - Successful Response
@@ -1452,7 +1452,7 @@ Delete an existing image for a Review.
 - Request
 
   - Method: DELETE
-  - URL: /reviewImages
+  - URL: /images/:reviewId
   - Body: none
 
 - Successful Response
