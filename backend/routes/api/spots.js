@@ -18,12 +18,14 @@ router.get("/", async (req, res) => {
     if (totalRatings && ratingCount) {
       const avgRating = Math.round(totalRatings / ratingCount, 1);
       spot.dataValues.avgRating = avgRating;
-    }
+    } else spot.dataValues.avgRating = "We'd love to hear from you!";
 
     const previewImage = await SpotImage.findOne({
       where: { spotId: spot.id, preview: true },
     });
-    if (previewImage) spot.dataValues.previewImage = previewImage.url;
+    if (previewImage) {
+      spot.dataValues.previewImage = previewImage.url;
+    } else spot.dataValues.previewImage = "Let's add some photos!";
   }
   return res.json({ Spots: spots });
 });
