@@ -73,7 +73,7 @@ router.get("/:spotId", async (req, res, next) => {
   const { numReviews, avgRating } = spotReviews[0].dataValues;
   result.numReviews = numReviews;
   if (numReviews === 0) result.avgRating = "Please leave a review!";
-  else result.avgRating = avgRating;
+  else result.avgRating = Math.round(avgRating, 1);
 
   const spotImages = await spot.getSpotImages({
     includes: { model: SpotImage },
