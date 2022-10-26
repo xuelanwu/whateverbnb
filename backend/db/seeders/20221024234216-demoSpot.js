@@ -2,6 +2,7 @@
 
 const demoSpots = [
   {
+    ownerId: 1,
     address: "aaa456 Disney Lane",
     city: "San Francisco",
     state: "California",
@@ -13,6 +14,7 @@ const demoSpots = [
     price: 123,
   },
   {
+    ownerId: 2,
     address: "bbb123 Disney Lane",
     city: "San Francisco",
     state: "California",
@@ -24,6 +26,7 @@ const demoSpots = [
     price: 123,
   },
   {
+    ownerId: 3,
     address: "ccc123 Disney Lane",
     city: "San Francisco",
     state: "California",
@@ -35,6 +38,7 @@ const demoSpots = [
     price: 123,
   },
   {
+    ownerId: 4,
     address: "ddd123 Disney Lane",
     city: "San Francisco",
     state: "California",
@@ -46,6 +50,7 @@ const demoSpots = [
     price: 123,
   },
   {
+    ownerId: 5,
     address: "eee123 Disney Lane",
     city: "San Francisco",
     state: "California",
