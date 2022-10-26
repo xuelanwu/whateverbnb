@@ -15,7 +15,7 @@ const handleSpots = async (spots) => {
     });
     const ratingCount = await Review.count({ where: { spotId: spot.id } });
     if (totalRatings && ratingCount) {
-      const avgRating = Math.round(totalRatings / ratingCount, 1);
+      const avgRating = (totalRatings / ratingCount).toFixed(1);
       spot.dataValues.avgRating = avgRating;
     } else spot.dataValues.avgRating = "We'd love to hear from you!";
 
@@ -73,7 +73,7 @@ router.get("/:spotId", async (req, res, next) => {
   const { numReviews, avgRating } = spotReviews[0].dataValues;
   result.numReviews = numReviews;
   if (numReviews === 0) result.avgRating = "Please leave a review!";
-  else result.avgRating = Math.round(avgRating, 1);
+  else result.avgRating = avgRating.toFixed(1);
 
   const spotImages = await spot.getSpotImages({
     includes: { model: SpotImage },
