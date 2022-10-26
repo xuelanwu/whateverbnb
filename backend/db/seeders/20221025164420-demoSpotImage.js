@@ -5,7 +5,7 @@ const demoSpotImages = [
   { spotId: 2, url: "image2.url", preview: false },
   { spotId: 3, url: "image3.url", preview: false },
   { spotId: 4, url: "image4.url", preview: true },
-  { spotId: 5, url: "image5.url", preview: true },
+  { spotId: 1, url: "image5.url", preview: false },
 ];
 
 /** @type {import('sequelize-cli').Migration} */
@@ -30,6 +30,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete("SporImages", demoSpotImages);
+    await queryInterface.bulkDelete("SpotImages", demoSpotImages);
   },
 };

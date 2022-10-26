@@ -3,7 +3,8 @@ const express = require("express");
 const { handleValidationErrors } = require("../../utils/validation");
 
 const { requireAuth } = require("../../utils/auth");
-const { Spot, Review, SpotImage } = require("../../db/models");
+const { User, Spot, Review, SpotImage } = require("../../db/models");
+const { Sequelize } = require("sequelize");
 
 const router = express.Router();
 
@@ -45,6 +46,49 @@ router.get("/current", requireAuth, async (req, res) => {
     const result = await handleSpots(spots);
     return res.json({ Spots: result });
   } else res.json({ Spots: "Become a Host in 10 easy steps" });
+});
+
+//Get details of a Spot from an id
+router.get("/:spotId", async (req, res, next) => {
+  let result = {};
+
+  const { spotId } = req.params;
+
+  const spot = await Spot.findByPk(spotId);
+  if (!spot) {
+    const err = new Error("Spot couldn't be found");
+    err.status = 404;
+    err.title = "Fetch spot failed";
+    err.errors = ["Spot couldn't be found"];
+    return next(err);
+  } else result = { ...spot.dataValues };
+
+  const spotReviews = await spot.getReviews({
+    includes: { model: Review },
+    attributes: [
+      [Sequelize.fn("COUNT", Sequelize.col("spotId")), "numReviews"],
+      [Sequelize.fn("AVG", Sequelize.col("stars")), "avgRating"],
+    ],
+  });
+  const { numReviews, avgRating } = spotReviews[0].dataValues;
+  result.numReviews = numReviews;
+  if (numReviews === 0) result.avgRating = "No review found";
+  else result.avgRating = avgRating;
+
+  const spotImages = await spot.getSpotImages({
+    includes: { model: SpotImage },
+    attributes: ["id", "url", "preview"],
+  });
+  if (spotImages.length >= 0) result.SpotImage = spotImages;
+  else result.SpotImage = "Let's add some photos!";
+
+  const owner = await spot.getUser({
+    includes: { model: User },
+    attributes: ["id", "firstName", "lastName"],
+  });
+  result.Owner = { ...owner.dataValues };
+
+  return res.json(result);
 });
 
 module.exports = router;
