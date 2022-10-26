@@ -1,11 +1,11 @@
 "use strict";
 
 const demoSpotImages = [
-  { url: "image1.url", preview: true },
-  { url: "image2.url", preview: false },
-  { url: "image3.url", preview: false },
-  { url: "image4.url", preview: true },
-  { url: "image5.url", preview: true },
+  { spotId: 1, url: "image1.url", preview: true },
+  { spotId: 2, url: "image2.url", preview: false },
+  { spotId: 3, url: "image3.url", preview: false },
+  { spotId: 4, url: "image4.url", preview: true },
+  { spotId: 5, url: "image5.url", preview: true },
 ];
 
 /** @type {import('sequelize-cli').Migration} */
