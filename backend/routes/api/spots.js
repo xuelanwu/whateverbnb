@@ -58,7 +58,7 @@ router.get("/:spotId", async (req, res, next) => {
   if (!spot) {
     const err = new Error("Spot couldn't be found");
     err.status = 404;
-    err.title = "Fetch spot failed";
+    err.title = "Spot Not Found";
     err.errors = ["Spot couldn't be found"];
     return next(err);
   } else result = { ...spot.dataValues };
@@ -72,14 +72,14 @@ router.get("/:spotId", async (req, res, next) => {
   });
   const { numReviews, avgRating } = spotReviews[0].dataValues;
   result.numReviews = numReviews;
-  if (numReviews === 0) result.avgRating = "No review found";
+  if (numReviews === 0) result.avgRating = "Please leave a review!";
   else result.avgRating = avgRating;
 
   const spotImages = await spot.getSpotImages({
     includes: { model: SpotImage },
     attributes: ["id", "url", "preview"],
   });
-  if (spotImages.length >= 0) result.SpotImage = spotImages;
+  if (spotImages.length > 0) result.SpotImage = spotImages;
   else result.SpotImage = "Let's add some photos!";
 
   const owner = await spot.getUser({
