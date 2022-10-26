@@ -7,9 +7,7 @@ const { Spot, Review, SpotImage } = require("../../db/models");
 
 const router = express.Router();
 
-//Get all spots
-router.get("/", async (req, res) => {
-  const spots = await Spot.findAll();
+const handleSpots = async (spots) => {
   for (const spot of spots) {
     const totalRatings = await Review.sum("stars", {
       where: { spotId: spot.id },
@@ -27,7 +25,26 @@ router.get("/", async (req, res) => {
       spot.dataValues.previewImage = previewImage.url;
     } else spot.dataValues.previewImage = "Let's add some photos!";
   }
-  return res.json({ Spots: spots });
+  return spots;
+};
+
+//Get all spots
+router.get("/", async (req, res) => {
+  const spots = await Spot.findAll();
+  const result = await handleSpots(spots);
+  return res.json({ Spots: result });
+});
+
+//Get all Spots owned by the Current User
+router.get("/current", requireAuth, async (req, res) => {
+  const userId = req.user.id;
+  const spots = await Spot.findAll({
+    where: { ownerId: userId },
+  });
+  if (spots.length > 0) {
+    const result = await handleSpots(spots);
+    return res.json({ Spots: result });
+  } else res.json({ Spots: "Become a Host in 10 easy steps" });
 });
 
 module.exports = router;
