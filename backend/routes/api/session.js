@@ -3,7 +3,11 @@ const express = require("express");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
-const { setTokenCookie, restoreUser } = require("../../utils/auth");
+const {
+  setTokenCookie,
+  restoreUser,
+  requireAuth,
+} = require("../../utils/auth");
 const { User } = require("../../db/models");
 
 const validateLogin = [
@@ -43,11 +47,11 @@ router.delete("/", (_req, res) => {
 });
 
 // Restore session user
-router.get("/", restoreUser, (req, res) => {
+router.get("/", restoreUser, requireAuth, (req, res) => {
   const { user } = req;
   if (user) {
     return res.json({
-      user: user.toSafeObject(),
+      ...user.dataValues,
     });
   } else return res.json({});
 });
