@@ -32,7 +32,7 @@ const getSpotPreviewImage = async (spot) => {
   const previewImage = await SpotImage.findOne({
     where: { spotId: spot.id, preview: true },
   });
-  console.log(previewImage);
+
   if (previewImage) {
     console.log(previewImage.dataValues.url);
     return previewImage.dataValues.url;
@@ -66,7 +66,7 @@ router.get("/", async (req, res) => {
 //Get all Spots owned by the Current User
 router.get("/current", requireAuth, async (req, res) => {
   const userId = req.user.id;
-  console.log(userId);
+
   const spots = await Spot.findAll({
     where: { ownerId: userId },
   });
@@ -140,4 +140,37 @@ router.post("/", requireAuth, async (req, res) => {
   return res.json(spot);
 });
 
+//Edit a Spot
+router.put("/:spotId", requireAuth, async (req, res, next) => {
+  const userId = req.user.id;
+  const { spotId } = req.params;
+  const { address, city, state, country, lat, lng, name, description, price } =
+    req.body;
+
+  const spot = await Spot.findByPk(spotId);
+  if (!spot) {
+    const err = new Error("Spot couldn't be found");
+    err.status = 404;
+    err.title = "Spot Not Found";
+    err.errors = ["Spot couldn't be found"];
+    return next(err);
+  } else {
+    result = { ...spot.dataValues };
+  }
+
+  if (userId === spot.dataValues.ownerId) {
+    const updatedSpot = await spot.update({
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price,
+    });
+    return res.json(updatedSpot);
+  } else return res.json("Only owner can update");
+});
 module.exports = router;
