@@ -1,5 +1,6 @@
 const express = require("express");
 
+const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
 const { requireAuth } = require("../../utils/auth");
@@ -116,6 +117,27 @@ router.get("/:spotId", async (req, res, next) => {
   result.Owner = { ...owner.dataValues };
 
   return res.json(result);
+});
+
+//Create a Spot
+router.post("/", requireAuth, async (req, res) => {
+  const ownerId = req.user.id;
+  const { address, city, state, country, lat, lng, name, description, price } =
+    req.body;
+
+  const spot = await Spot.create({
+    ownerId,
+    address,
+    city,
+    state,
+    country,
+    lat,
+    lng,
+    name,
+    description,
+    price,
+  });
+  return res.json(spot);
 });
 
 module.exports = router;
