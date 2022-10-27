@@ -173,4 +173,30 @@ router.put("/:spotId", requireAuth, async (req, res, next) => {
     return res.json(updatedSpot);
   } else return res.json("Only owner can update");
 });
+
+//Delete a Spot
+router.delete("/:spotId", requireAuth, async (req, res, next) => {
+  const userId = req.user.id;
+  const { spotId } = req.params;
+
+  const spot = await Spot.findByPk(spotId);
+  if (!spot) {
+    const err = new Error("Spot couldn't be found");
+    err.status = 404;
+    err.title = "Spot Not Found";
+    err.errors = ["Spot couldn't be found"];
+    return next(err);
+  } else {
+    result = { ...spot.dataValues };
+  }
+
+  if (userId === spot.dataValues.ownerId) {
+    await spot.destroy();
+    res.status = 200;
+    return res.json({
+      message: `Successfully deleted ${spotId}`,
+      statusCode: 200,
+    });
+  } else return res.json("Only owner can update");
+});
 module.exports = router;
