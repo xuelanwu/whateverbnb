@@ -199,4 +199,30 @@ router.delete("/:spotId", requireAuth, async (req, res, next) => {
     });
   } else return res.json("Only owner can update");
 });
+
+//Add an Image to a Spot based on the Spot's id
+router.post("/:spotId/images", requireAuth, async (req, res, next) => {
+  const userId = req.user.id;
+  const { spotId } = req.params;
+  const { url, preview } = req.body;
+
+  const spot = await Spot.findByPk(spotId);
+  if (!spot) {
+    const err = new Error("Spot couldn't be found");
+    err.status = 404;
+    err.title = "Spot Not Found";
+    err.errors = ["Spot couldn't be found"];
+    return next(err);
+  } else {
+    result = { ...spot.dataValues };
+  }
+
+  if (userId === spot.dataValues.ownerId) {
+    const image = await SpotImage.create({ spotId, url, preview });
+    const { id } = image.dataValues;
+    console.log(image);
+    return res.json({ id, url, preview });
+  } else return res.json("Only owner can update");
+});
+
 module.exports = router;
