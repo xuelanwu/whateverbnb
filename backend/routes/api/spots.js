@@ -8,23 +8,48 @@ const { Sequelize } = require("sequelize");
 
 const router = express.Router();
 
-const handleSpots = async (spots) => {
-  for (const spot of spots) {
-    const totalRatings = await Review.sum("stars", {
-      where: { spotId: spot.id },
-    });
-    const ratingCount = await Review.count({ where: { spotId: spot.id } });
-    if (totalRatings && ratingCount) {
-      const avgRating = (totalRatings / ratingCount).toFixed(1);
-      spot.dataValues.avgRating = avgRating;
-    } else spot.dataValues.avgRating = "We'd love to hear from you!";
+const getSpotReview = async (spot) => {
+  let result = {};
+  const spotReviews = await spot.getReviews({
+    includes: { model: Review },
+    attributes: [
+      [Sequelize.fn("COUNT", Sequelize.col("spotId")), "numReviews"],
+      [
+        Sequelize.fn("ROUND", Sequelize.fn("AVG", Sequelize.col("stars")), 1),
+        "avgRating",
+      ],
+    ],
+  });
+  const { numReviews, avgRating } = spotReviews[0].dataValues;
+  result.numReviews = numReviews;
+  if (numReviews === 0) {
+    result.avgRating = "We'd love to hear from you!";
+  } else {
+    result.avgRating = avgRating;
+  }
+  return result;
+};
 
-    const previewImage = await SpotImage.findOne({
-      where: { spotId: spot.id, preview: true },
-    });
-    if (previewImage) {
-      spot.dataValues.previewImage = previewImage.url;
-    } else spot.dataValues.previewImage = "Let's add some photos!";
+const getSpotPreviewImage = async (spot) => {
+  const previewImage = await SpotImage.findOne({
+    where: { spotId: spot.id, preview: true },
+  });
+  console.log(previewImage);
+  if (previewImage) {
+    console.log(previewImage.dataValues.url);
+    return previewImage.dataValues.url;
+  } else {
+    return "Let's add some photos!";
+  }
+};
+
+const handleAllSpotsReponse = async (spots) => {
+  for (let spot of spots) {
+    const { avgRating } = await getSpotReview(spot);
+    spot.dataValues.avgRating = avgRating;
+
+    const previewImageUrl = await getSpotPreviewImage(spot);
+    spot.dataValues.previewImage = previewImageUrl;
   }
   return spots;
 };
@@ -32,20 +57,28 @@ const handleSpots = async (spots) => {
 //Get all spots
 router.get("/", async (req, res) => {
   const spots = await Spot.findAll();
-  const result = await handleSpots(spots);
-  return res.json({ Spots: result });
+  if (spots.length > 0) {
+    const result = await handleAllSpotsReponse(spots);
+    return res.json({ Spots: result });
+  } else {
+    return res.json({ Spots: "Add an spot" });
+  }
 });
 
 //Get all Spots owned by the Current User
 router.get("/current", requireAuth, async (req, res) => {
   const userId = req.user.id;
+  console.log(userId);
   const spots = await Spot.findAll({
     where: { ownerId: userId },
   });
+
   if (spots.length > 0) {
-    const result = await handleSpots(spots);
+    const result = await handleAllSpotsReponse(spots);
     return res.json({ Spots: result });
-  } else res.json({ Spots: "Become a Host in 10 easy steps" });
+  } else {
+    return res.json({ Spots: "Become a Host in 10 easy steps" });
+  }
 });
 
 //Get details of a Spot from an id
@@ -61,26 +94,23 @@ router.get("/:spotId", async (req, res, next) => {
     err.title = "Spot Not Found";
     err.errors = ["Spot couldn't be found"];
     return next(err);
-  } else result = { ...spot.dataValues };
+  } else {
+    result = { ...spot.dataValues };
+  }
 
-  const spotReviews = await spot.getReviews({
-    includes: { model: Review },
-    attributes: [
-      [Sequelize.fn("COUNT", Sequelize.col("spotId")), "numReviews"],
-      [Sequelize.fn("AVG", Sequelize.col("stars")), "avgRating"],
-    ],
-  });
-  const { numReviews, avgRating } = spotReviews[0].dataValues;
+  const { numReviews, avgRating } = await getSpotReview(spot);
   result.numReviews = numReviews;
-  if (numReviews === 0) result.avgRating = "Please leave a review!";
-  else result.avgRating = avgRating.toFixed(1);
+  result.avgRating = avgRating;
 
   const spotImages = await spot.getSpotImages({
     includes: { model: SpotImage },
     attributes: ["id", "url", "preview"],
   });
-  if (spotImages.length > 0) result.SpotImage = spotImages;
-  else result.SpotImage = "Let's add some photos!";
+  if (spotImages.length > 0) {
+    result.SpotImage = spotImages;
+  } else {
+    result.SpotImage = "Let's add some photos!";
+  }
 
   const owner = await spot.getUser({
     includes: { model: User },
