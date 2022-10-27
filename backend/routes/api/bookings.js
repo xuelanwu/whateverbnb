@@ -9,6 +9,7 @@ const { Sequelize } = require("sequelize");
 
 const router = express.Router();
 
+//Get all of the Current User's Bookings
 router.get("/current", requireAuth, async (req, res) => {
   const userId = req.user.id;
 
@@ -48,6 +49,27 @@ router.get("/current", requireAuth, async (req, res) => {
     return res.json({ Bookings: bookings });
   } else {
     return res.json({ Bookings: "Book now!" });
+  }
+});
+
+//Get all Bookings for a Spot based on the Spot's id
+router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
+  const userId = req.user.id;
+  const { spotId } = req.params;
+  const spot = await Spot.findByPk(spotId);
+  if (!spot) {
+    const err = new Error("Spot couldn't be found");
+    err.status = 404;
+    err.title = "Spot Not Found";
+    err.errors = ["Spot couldn't be found"];
+    return next(err);
+  }
+  if (userId === spot.dataValues.ownerId) {
+    const bookings = await Booking.findAll({
+      where: { spotId },
+      attributes: ["spotId", "startDate", "endDate"],
+    });
+    return res.json(bookings);
   }
 });
 
