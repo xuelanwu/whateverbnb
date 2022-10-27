@@ -200,6 +200,7 @@ router.delete("/:spotId", requireAuth, async (req, res, next) => {
   } else return res.json("Only owner can update");
 });
 
+//Add an Image to a Spot based on the Spot's id
 router.post("/:spotId/images", requireAuth, async (req, res, next) => {
   const userId = req.user.id;
   const { spotId } = req.params;

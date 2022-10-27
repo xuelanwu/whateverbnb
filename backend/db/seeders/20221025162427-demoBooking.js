@@ -1,26 +1,11 @@
 "use strict";
 
 const demoBookings = [
-  {
-    startDate: "2025-1-24",
-    endDate: "2025-1-25",
-  },
-  {
-    startDate: "2025-2-24",
-    endDate: "2025-2-25",
-  },
-  {
-    startDate: "2025-3-24",
-    endDate: "2025-3-25",
-  },
-  {
-    startDate: "2025-4-24",
-    endDate: "2025-4-25",
-  },
-  {
-    startDate: "2025-5-24",
-    endDate: "2025-5-25",
-  },
+  { spotId: 1, userId: 5, startDate: "2025-01-24", endDate: "2025-01-25" },
+  { spotId: 2, userId: 5, startDate: "2025-02-24", endDate: "2025-02-25" },
+  { spotId: 3, userId: 1, startDate: "2025-03-24", endDate: "2025-03-25" },
+  { spotId: 1, userId: 1, startDate: "2025-04-24", endDate: "2025-04-25" },
+  { spotId: 1, userId: 2, startDate: "2025-05-24", endDate: "2025-05-25" },
 ];
 
 /** @type {import('sequelize-cli').Migration} */
@@ -45,6 +30,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete("Bookings", demoBookings);
+    const Op = Sequelize.Op;
+    await queryInterface.bulkDelete("Bookings", { [Op.or]: demoBookings });
   },
 };
