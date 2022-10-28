@@ -138,4 +138,45 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
   return res.json(updatedBooking);
 });
 
+//Delete a Booking
+router.delete("/:bookingId", requireAuth, async (req, res, next) => {
+  const userId = req.user.id;
+  const { bookingId } = req.params;
+
+  const booking = await Booking.findByPk(bookingId);
+  if (!booking) {
+    const err = new Error("Booking couldn't be found");
+    err.status = 404;
+    err.title = "Booking Not Found";
+    err.errors = ["Booking couldn't be found"];
+    return next(err);
+  }
+
+  if (userId !== booking.dataValues.userId) {
+    const err = new Error("Booking must belong to the current user");
+    err.status = 404;
+    err.title = "Forbidden";
+    err.errors = ["Booking must belong to the current user"];
+    return next(err);
+  }
+
+  const { startDate: startDateStr } = booking.dataValues;
+  const today = new Date();
+  const formattedStartDate = new Date(startDateStr);
+  if (formattedStartDate.getTime() <= today.getTime()) {
+    const err = new Error("Past bookings can't be modified");
+    err.status = 403;
+    err.title = "Past Bookings";
+    err.errors = ["Past bookings can't be modified"];
+    return next(err);
+  }
+
+  await booking.destroy();
+  res.status = 200;
+  return res.json({
+    message: `Successfully deleted bookingId:${bookingId}`,
+    statusCode: 200,
+  });
+});
+
 module.exports = router;
