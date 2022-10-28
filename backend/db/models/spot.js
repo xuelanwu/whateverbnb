@@ -30,10 +30,42 @@ module.exports = (sequelize, DataTypes) => {
   Spot.init(
     {
       ownerId: { type: DataTypes.INTEGER, allowNull: false },
-      address: { type: DataTypes.STRING, allowNull: false },
-      city: { type: DataTypes.STRING, allowNull: false },
-      state: { type: DataTypes.STRING, allowNull: false },
-      country: { type: DataTypes.STRING, allowNull: false },
+      address: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Street address is required",
+          },
+        },
+      },
+      city: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "City address is required",
+          },
+        },
+      },
+      state: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Statet address is required",
+          },
+        },
+      },
+      country: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Country address is required",
+          },
+        },
+      },
       lat: {
         allowNull: false,
         type: DataTypes.DECIMAL,
@@ -68,8 +100,24 @@ module.exports = (sequelize, DataTypes) => {
           len: [0, 50],
         },
       },
-      description: { type: DataTypes.STRING, allowNull: false },
-      price: { type: DataTypes.INTEGER, allowNull: false },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Description is required",
+          },
+        },
+      },
+      price: {
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Price per day is required",
+          },
+        },
+      },
     },
     {
       sequelize,
