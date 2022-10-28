@@ -4,7 +4,14 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
 const { requireAuth } = require("../../utils/auth");
-const { User, Spot, Review, Booking, SpotImage } = require("../../db/models");
+const {
+  User,
+  Spot,
+  Review,
+  Booking,
+  SpotImage,
+  ReviewImage,
+} = require("../../db/models");
 const { Sequelize, Op } = require("sequelize");
 const e = require("express");
 
@@ -317,7 +324,7 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
 });
 
 //Get all Reviews by a Spot's id
-router.get("/:spotId/reviews", async (req, res) => {
+router.get("/:spotId/reviews", async (req, res, next) => {
   const { spotId } = req.params;
 
   const spot = await Spot.findByPk(spotId);
