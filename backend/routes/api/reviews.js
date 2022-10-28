@@ -92,4 +92,34 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
   return res.json({ newImage });
 });
 
+//Edit a Review
+router.put("/:reviewId", requireAuth, async (req, res, next) => {
+  const userId = req.user.id;
+  const { reviewId } = req.params;
+  const { review, stars } = req.body;
+
+  const existedReview = await Review.findByPk(reviewId);
+  if (!existedReview) {
+    const err = new Error("Review couldn't be found");
+    err.status = 404;
+    err.title = "Review Not Found";
+    err.errors = ["Review couldn't be found"];
+    return next(err);
+  }
+
+  if (userId !== existedReview.dataValues.userId) {
+    const err = new Error("Review must belong to the current user");
+    err.status = 403;
+    err.title = "Forbidden";
+    err.errors = ["Review must belong to the current user"];
+    return next(err);
+  }
+
+  const updatedReview = await existedReview.update({
+    review,
+    stars,
+  });
+  return res.json(updatedReview);
+});
+
 module.exports = router;
