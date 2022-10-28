@@ -27,7 +27,7 @@ const getSpotReview = async (spot) => {
   });
   const { numReviews, avgRating } = spotReviews[0].dataValues;
   result.numReviews = numReviews;
-  if (numReviews === 0) {
+  if (!numReviews) {
     result.avgRating = "We'd love to hear from you!";
   } else {
     result.avgRating = avgRating;
@@ -41,7 +41,6 @@ const getSpotPreviewImage = async (spot) => {
   });
 
   if (previewImage) {
-    console.log(previewImage.dataValues.url);
     return previewImage.dataValues.url;
   } else {
     return "Let's add some photos!";
