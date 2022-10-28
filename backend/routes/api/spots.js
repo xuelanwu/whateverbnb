@@ -155,8 +155,6 @@ router.put("/:spotId", requireAuth, async (req, res, next) => {
     err.title = "Spot Not Found";
     err.errors = ["Spot couldn't be found"];
     return next(err);
-  } else {
-    result = { ...spot.dataValues };
   }
 
   if (userId === spot.dataValues.ownerId) {
@@ -187,8 +185,6 @@ router.delete("/:spotId", requireAuth, async (req, res, next) => {
     err.title = "Spot Not Found";
     err.errors = ["Spot couldn't be found"];
     return next(err);
-  } else {
-    result = { ...spot.dataValues };
   }
 
   if (userId === spot.dataValues.ownerId) {
@@ -214,8 +210,6 @@ router.post("/:spotId/images", requireAuth, async (req, res, next) => {
     err.title = "Spot Not Found";
     err.errors = ["Spot couldn't be found"];
     return next(err);
-  } else {
-    result = { ...spot.dataValues };
   }
 
   if (userId === spot.dataValues.ownerId) {
@@ -230,6 +224,7 @@ router.post("/:spotId/images", requireAuth, async (req, res, next) => {
 router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
   const userId = req.user.id;
   const { spotId } = req.params;
+
   const spot = await Spot.findByPk(spotId);
   if (!spot) {
     const err = new Error("Spot couldn't be found");
@@ -238,6 +233,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
     err.errors = ["Spot couldn't be found"];
     return next(err);
   }
+
   if (userId === spot.dataValues.ownerId) {
     const bookings = await Booking.findAll({
       where: { spotId },
@@ -260,7 +256,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
 router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
   const userId = req.user.id;
   const { spotId } = req.params;
-  const { startDate: newStartDate, endDate: newEndDate } = req.body;
+  const { startDate: newStartDateStr, endDate: newEndDateStr } = req.body;
 
   const spot = await Spot.findByPk(spotId);
   if (!spot) {
@@ -279,31 +275,43 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
     return next(err);
   }
 
-  const conflict = await Booking.count({
-    where: {
-      spotId,
-      startDate: { [Op.lte]: newStartDate },
-      endDate: { [Op.gte]: newEndDate },
-    },
-  });
-  if (conflict) {
-    const err = new Error(
-      "Sorry, this spot is already booked for the specified dates"
-    );
-    err.status = 403;
-    err.title = "Booking Conflict";
-    err.errors = [
-      "Start date conflicts with an existing booking",
-      "End date conflicts with an existing booking",
-    ];
-    return next(err);
+  const bookings = await Booking.findAll({ where: { spotId } });
+  if (bookings.length) {
+    const newStartDate = new Date(newStartDateStr);
+    const newEndDate = new Date(newEndDateStr);
+
+    for (let i = 0; i < bookings.length; i++) {
+      const { startDate: bookedStartDateStr, endDate: bookedEndDateStr } =
+        bookings[i].dataValues;
+      const bookedStartDate = new Date(bookedStartDateStr);
+      const bookedEndDate = new Date(bookedEndDateStr);
+
+      if (
+        !(
+          (newStartDate.getTime() < bookedStartDate.getTime() &&
+            newEndDate.getTime() <= bookedStartDate.getTime()) ||
+          newStartDate.getTime() >= bookedEndDate.getTime()
+        )
+      ) {
+        const err = new Error(
+          "Sorry, this spot is already booked for the specified dates"
+        );
+        err.status = 403;
+        err.title = "Booking Conflict";
+        err.errors = [
+          "Start date conflicts with an existing booking",
+          "End date conflicts with an existing booking",
+        ];
+        return next(err);
+      }
+    }
   }
 
   const booking = await Booking.create({
     spotId,
     userId,
-    startDate: newStartDate,
-    endDate: newEndDate,
+    startDate: newStartDateStr,
+    endDate: newEndDateStr,
   });
   return res.json(booking);
 });
