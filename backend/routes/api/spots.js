@@ -25,7 +25,7 @@ const getSpotReview = async (spot) => {
       [Sequelize.fn("AVG", Sequelize.col("stars")), "avgRating"],
     ],
   });
-
+  console.log(spotReviews);
   if (!spotReviews.length) {
     result.numReviews = "We'd love to hear from you!";
     result.avgRating = "We'd love to hear from you!";
