@@ -29,7 +29,7 @@ router.delete("/:imageId", requireAuth, async (req, res, next) => {
     return next(err);
   }
 
-  const review = await review.findByPk(image.dataValues.reviewId);
+  const review = await Review.findByPk(image.dataValues.reviewId);
   if (userId !== review.dataValues.userId) {
     const err = new Error("Review must belong to the current user");
     err.status = 403;
