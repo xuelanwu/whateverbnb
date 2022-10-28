@@ -1,11 +1,11 @@
 "use strict";
 
 const demoReviewImages = [
-  { url: "image1.url" },
-  { url: "image2.url" },
-  { url: "image3.url" },
-  { url: "image4.url" },
-  { url: "image5.url" },
+  { reviewId: 1, url: "image1.url" },
+  { reviewId: 1, url: "image2.url" },
+  { reviewId: 2, url: "image3.url" },
+  { reviewId: 3, url: "image4.url" },
+  { reviewId: 2, url: "image5.url" },
 ];
 
 /** @type {import('sequelize-cli').Migration} */
@@ -30,6 +30,9 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete("ReviewImages", demoReviewImages);
+    const Op = Sequelize.Op;
+    await queryInterface.bulkDelete("ReviewImages", {
+      [Op.or]: demoReviewImages,
+    });
   },
 };
