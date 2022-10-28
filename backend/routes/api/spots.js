@@ -13,7 +13,6 @@ const {
   ReviewImage,
 } = require("../../db/models");
 const { Sequelize, Op } = require("sequelize");
-const e = require("express");
 
 const router = express.Router();
 
