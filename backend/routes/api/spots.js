@@ -60,11 +60,73 @@ const handleAllSpotsReponse = async (spots) => {
 };
 
 //Get all spots
-router.get("/", async (req, res) => {
-  const spots = await Spot.findAll();
+router.get("/", async (req, res, next) => {
+  let query = {};
+  let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } =
+    req.query;
+
+  if (page) page = parseInt(page);
+  if (size) size = parseInt(size);
+  if (page > 10) page = 10;
+  if (size > 20) size = 20;
+  if (page >= 1 && size >= 1) {
+    query.limit = size;
+    query.offset = size * (page - 1);
+  } else if (page || size) {
+    const err = new Error("Page and Size must be greater than or equal to 1");
+    return next(err);
+  }
+
+  if (minLat) {
+    minLat = parseFloat(minLat);
+    if (isNaN(minLat) || minLat < -90) {
+      const err = new Error("Minimum latitude is invalid");
+      return next(err);
+    }
+    if (minLat) query.where.lat = { [Op.gte]: minLat };
+  }
+
+  if (maxLat) {
+    maxLat = parseFloat(maxLat);
+    if (isNaN(maxLat) || maxLat > 90) {
+      const err = new Error("Maximum latitude is invalid");
+      return next(err);
+    }
+    if (maxLat) query.where.lat = { [Op.lte]: maxLat };
+  }
+  if (minLng) {
+    minLng = parseFloat(minLng);
+    if (isNaN(minLat) || minLat < -180) {
+      const err = new Error("Minimum longitude is invalid");
+      return next(err);
+    }
+    if (minLng) query.where.lng = { [Op.gte]: minLng };
+  }
+  if (maxLng) {
+    maxLng = parseFloat(maxLng);
+    if (isNaN(maxLng) || maxLng < 180) {
+      const err = new Error("Maximum longitude is invalid");
+      return next(err);
+    }
+    if (maxLng) query.where.lng = { [Op.lte]: maxLng };
+  }
+
+  if (minPrice) minPrice = parseFloat(minPrice);
+  if (maxPrice) maxPrice = parseFloat(maxPrice);
+  if (minPrice < 0 || maxPrice < 0) {
+    const err = new Error(
+      "minPrice and maxPrice must be greater than or equal to 1"
+    );
+    return next(err);
+  } else {
+    if (minPrice) query.where.price = { [Op.gte]: minPrice };
+    if (maxPrice) query.where.price = { [Op.lte]: maxPrice };
+  }
+
+  const spots = await Spot.findAll(query);
   if (spots.length > 0) {
     const result = await handleAllSpotsReponse(spots);
-    return res.json({ Spots: result });
+    return res.json({ Spots: result, page, size });
   } else {
     return res.json({ Spots: "Add an spot" });
   }

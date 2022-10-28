@@ -27,9 +27,8 @@ router.get("/current", requireAuth, async (req, res) => {
         model: Spot,
         include: {
           model: SpotImage,
-          as: "previewImage",
           where: { preview: true },
-          attributes: ["url"],
+          attributes: [["url", "previewImage"]],
         },
       },
 
@@ -89,7 +88,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
     reviewId,
     url,
   });
-  return res.json({ newImage });
+  return res.json(newImage);
 });
 
 //Edit a Review
