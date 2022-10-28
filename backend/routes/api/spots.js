@@ -387,7 +387,7 @@ router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
     review,
     stars,
   });
-  return res.json({ newReview });
+  return res.json(newReview);
 });
 
 module.exports = router;
