@@ -260,7 +260,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
 router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
   const userId = req.user.id;
   const { spotId } = req.params;
-  const { startDate, endDate } = req.body;
+  const { startDate: newStartDate, endDate: newEndDate } = req.body;
 
   const spot = await Spot.findByPk(spotId);
   if (!spot) {
@@ -271,10 +271,19 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
     return next(err);
   }
 
+  if (userId === spot.dataValues.ownerId) {
+    const err = new Error("Spot must NOT belong to the current users");
+    err.status = 403;
+    err.title = "Forbidden";
+    err.errors = ["Spot must NOT belong to the current user"];
+    return next(err);
+  }
+
   const conflict = await Booking.count({
     where: {
       spotId,
-      [Op.or]: [{ startDate }, { endDate }],
+      startDate: { [Op.lte]: newStartDate },
+      endDate: { [Op.gte]: newEndDate },
     },
   });
   if (conflict) {
@@ -290,17 +299,13 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
     return next(err);
   }
 
-  if (userId !== spot.dataValues.ownerId) {
-    const booking = await Booking.create({
-      spotId,
-      userId,
-      startDate,
-      endDate,
-    });
-    return res.json(booking);
-  } else {
-    return res.json("It's your own spot!");
-  }
+  const booking = await Booking.create({
+    spotId,
+    userId,
+    startDate: newStartDate,
+    endDate: newEndDate,
+  });
+  return res.json(booking);
 });
 
 module.exports = router;
