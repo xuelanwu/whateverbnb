@@ -122,4 +122,34 @@ router.put("/:reviewId", requireAuth, async (req, res, next) => {
   return res.json(updatedReview);
 });
 
+//Delete a Review
+router.delete("/:reviewId", requireAuth, async (req, res, next) => {
+  const userId = req.user.id;
+  const { reviewId } = req.params;
+
+  const review = await Review.findByPk(reviewId);
+  if (!review) {
+    const err = new Error("Review couldn't be found");
+    err.status = 404;
+    err.title = "Review Not Found";
+    err.errors = ["Review couldn't be found"];
+    return next(err);
+  }
+
+  if (userId !== review.dataValues.userId) {
+    const err = new Error("Review must belong to the current user");
+    err.status = 403;
+    err.title = "Forbidden";
+    err.errors = ["Review must belong to the current user"];
+    return next(err);
+  }
+
+  await review.destroy();
+
+  return res.json({
+    message: `Successfully deleted reviewId:${reviewId}`,
+    statusCode: 200,
+  });
+});
+
 module.exports = router;
