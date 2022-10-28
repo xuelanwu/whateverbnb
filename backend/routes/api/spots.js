@@ -25,13 +25,16 @@ const getSpotReview = async (spot) => {
       [Sequelize.fn("AVG", Sequelize.col("stars")), "avgRating"],
     ],
   });
-  const { numReviews, avgRating } = spotReviews[0].dataValues;
-  result.numReviews = numReviews;
-  if (!numReviews) {
+
+  if (!spotReviews.length) {
+    result.numReviews = "We'd love to hear from you!";
     result.avgRating = "We'd love to hear from you!";
   } else {
+    const { numReviews, avgRating } = spotReviews[0].dataValues;
+    result.numReviews = numReviews;
     result.avgRating = avgRating;
   }
+
   return result;
 };
 
