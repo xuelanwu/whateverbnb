@@ -316,4 +316,34 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
   return res.json(booking);
 });
 
+//Get all Reviews by a Spot's id
+router.get("/:spotId/reviews", async (req, res) => {
+  const { spotId } = req.params;
+
+  const spot = await Spot.findByPk(spotId);
+  if (!spot) {
+    const err = new Error("Spot couldn't be found");
+    err.status = 404;
+    err.title = "Spot Not Found";
+    err.errors = ["Spot couldn't be found"];
+    return next(err);
+  }
+
+  const reviews = await Review.findAll({
+    where: { spotId },
+    include: [
+      {
+        model: User,
+        attributes: ["id", "firstName", "lastName"],
+      },
+      {
+        model: ReviewImage,
+        attributes: ["id", "url"],
+      },
+    ],
+  });
+
+  return res.json({ Reviews: reviews });
+});
+
 module.exports = router;
