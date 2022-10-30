@@ -88,7 +88,8 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
     reviewId,
     url,
   });
-  return res.json(newImage);
+
+  return res.json({ id: newImage.dataValues.id, url: newImage.dataValues.url });
 });
 
 //Edit a Review
