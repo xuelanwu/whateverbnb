@@ -310,13 +310,13 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
         attributes: ["id", "firstName", "lastName"],
       },
     });
-    return res.json(bookings);
+    return res.json({ Bookings: bookings });
   } else {
     const bookings = await Booking.findAll({
       where: { spotId },
       attributes: ["spotId", "startDate", "endDate"],
     });
-    return res.json(bookings);
+    return res.json({ Bookings: bookings });
   }
 });
 
