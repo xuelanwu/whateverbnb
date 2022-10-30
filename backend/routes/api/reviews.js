@@ -25,14 +25,10 @@ router.get("/current", requireAuth, async (req, res) => {
     include: [
       {
         model: Spot,
-        include: {
-          model: SpotImage,
-          as: "previewImage",
-          where: { preview: true },
-          attributes: ["url"],
+        attributes: {
+          exclude: ["createdAt", "updatedAt", "description"],
         },
       },
-
       {
         model: User,
         attributes: ["id", "firstName", "lastName"],
@@ -43,6 +39,17 @@ router.get("/current", requireAuth, async (req, res) => {
       },
     ],
   });
+
+  for (let review of reviews) {
+    const previewImage = await SpotImage.findOne({
+      where: {
+        spotId: review.dataValues.spotId,
+        preview: true,
+      },
+    });
+    review.dataValues.Spot.dataValues.previewImage =
+      previewImage.dataValues.url;
+  }
 
   return res.json({ Reviews: reviews });
 });
