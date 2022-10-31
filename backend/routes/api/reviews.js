@@ -25,13 +25,10 @@ router.get("/current", requireAuth, async (req, res) => {
     include: [
       {
         model: Spot,
-        include: {
-          model: SpotImage,
-          where: { preview: true },
-          attributes: [["url", "previewImage"]],
+        attributes: {
+          exclude: ["createdAt", "updatedAt", "description"],
         },
       },
-
       {
         model: User,
         attributes: ["id", "firstName", "lastName"],
@@ -42,6 +39,17 @@ router.get("/current", requireAuth, async (req, res) => {
       },
     ],
   });
+
+  for (let review of reviews) {
+    const previewImage = await SpotImage.findOne({
+      where: {
+        spotId: review.dataValues.spotId,
+        preview: true,
+      },
+    });
+    review.dataValues.Spot.dataValues.previewImage =
+      previewImage.dataValues.url;
+  }
 
   return res.json({ Reviews: reviews });
 });
@@ -88,7 +96,8 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
     reviewId,
     url,
   });
-  return res.json(newImage);
+
+  return res.json({ id: newImage.dataValues.id, url: newImage.dataValues.url });
 });
 
 //Edit a Review
