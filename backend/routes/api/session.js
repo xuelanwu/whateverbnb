@@ -35,9 +35,8 @@ router.post("/", validateLogin, async (req, res, next) => {
     err.errors = ["The provided credentials were invalid."];
     return next(err);
   }
-
   const token = await setTokenCookie(res, user);
-  return res.json({ ...user.dataValues, token });
+  return res.json({ user: user.dataValues });
 });
 
 //Log out
@@ -47,13 +46,13 @@ router.delete("/", (_req, res) => {
 });
 
 // Restore session user
-router.get("/", requireAuth, (req, res) => {
+router.get("/", (req, res) => {
   const { user } = req;
   if (user) {
     return res.json({
-      ...user.dataValues,
+      user: user.dataValues,
     });
-  } else return res.json({});
+  } else return res.json({ user: null });
 });
 
 module.exports = router;

@@ -16,20 +16,28 @@ export const login = (user) => async (dispatch) => {
     method: "POST",
     body: JSON.stringify(user),
   });
-  if (response.ok) {
-    const data = await response.json();
-    const { id, firstName, lastName, username, email } = data;
-    dispatch(setUser({ id, firstName, lastName, username, email }));
-  }
+  const data = await response.json();
+  console.log(data);
+  const { id, firstName, lastName, username, email } = data.user;
+  dispatch(setUser({ id, firstName, lastName, username, email }));
   return response;
 };
 
 export const restoreUser = () => async (dispatch) => {
   const response = await csrfFetch("api/session");
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(setUser(data));
-  }
+  const data = await response.json();
+  dispatch(setUser(data.user));
+  return response;
+};
+
+export const signup = (user) => async (dispatch) => {
+  const response = await csrfFetch("api/users", {
+    method: "POST",
+    body: JSON.stringify(user),
+  });
+  const data = await response.json();
+  const { id, firstName, lastName, username, email } = data.user;
+  dispatch(setUser({ id, firstName, lastName, username, email }));
   return response;
 };
 
