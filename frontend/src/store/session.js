@@ -17,7 +17,7 @@ export const login = (user) => async (dispatch) => {
     body: JSON.stringify(user),
   });
   const data = await response.json();
-  console.log(data);
+
   const { id, firstName, lastName, username, email } = data.user;
   dispatch(setUser({ id, firstName, lastName, username, email }));
   return response;

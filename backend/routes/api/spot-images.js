@@ -19,7 +19,6 @@ const router = express.Router();
 router.delete("/:imageId", requireAuth, async (req, res, next) => {
   const userId = req.user.id;
   const { imageId } = req.params;
-  console.log("hello??");
 
   const image = await SpotImage.findByPk(imageId);
   if (!image) {
@@ -31,8 +30,6 @@ router.delete("/:imageId", requireAuth, async (req, res, next) => {
   }
 
   const spot = await Spot.findByPk(image.dataValues.spotId);
-  console.log(userId);
-  console.log(spot.dataValues.ownerId);
   if (userId !== spot.dataValues.ownerId) {
     const err = new Error("Spot must belong to the current user");
     err.status = 403;

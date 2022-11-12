@@ -283,7 +283,6 @@ router.post("/:spotId/images", requireAuth, async (req, res, next) => {
   if (userId === spot.dataValues.ownerId) {
     const image = await SpotImage.create({ spotId, url, preview });
     const { id } = image.dataValues;
-    console.log(image);
     return res.json({ id, url, preview });
   } else return res.json("Only owner can update");
 });
