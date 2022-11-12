@@ -167,7 +167,7 @@ router.get("/:spotId", async (req, res, next) => {
 
   const { numReviews, avgRating } = await getSpotReview(spot);
   result.numReviews = numReviews;
-  result.avgRating = avgRating;
+  result.avgStarRating = avgRating;
 
   const spotImages = await spot.getSpotImages({
     includes: { model: SpotImage },
@@ -283,7 +283,6 @@ router.post("/:spotId/images", requireAuth, async (req, res, next) => {
   if (userId === spot.dataValues.ownerId) {
     const image = await SpotImage.create({ spotId, url, preview });
     const { id } = image.dataValues;
-    console.log(image);
     return res.json({ id, url, preview });
   } else return res.json("Only owner can update");
 });
