@@ -37,9 +37,9 @@ const demoSpotImages = [
     preview: false,
   },
   {
-    spotId: 2,
+    spotId: 5,
     url: "https://images.pexels.com/photos/449461/pexels-photo-449461.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-    preview: false,
+    preview: true,
   },
   {
     spotId: 3,
