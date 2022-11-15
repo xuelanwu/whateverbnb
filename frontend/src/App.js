@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { restoreUser } from "./store/session";
 
-import LoginFormPage from "./components/LoginFormPage";
+import LoginFormModal from "./components/LoginFormModal";
 import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
 
@@ -22,7 +22,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route path="/login">
-            <LoginFormPage />
+            <LoginFormModal />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
