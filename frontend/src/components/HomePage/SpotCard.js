@@ -4,7 +4,9 @@ const SpotCard = ({ spot }) => {
   return (
     <NavLink to={`/spots/${spot.id}`}>
       <div>
-        <img src={spot.previewImage} alt={spot.name} />
+        {spot.previewImage !== "Let's add some photos!" && (
+          <img src={spot.previewImage} alt={spot.name} />
+        )}
       </div>
       <div>{spot.name}</div>
       <div>{spot.city}</div>

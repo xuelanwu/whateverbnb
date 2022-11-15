@@ -5,17 +5,28 @@ import { fetchSpotDetail } from "../../store/spot";
 
 const SpotDetailPage = () => {
   const { spotId } = useParams();
-  console.log(spotId);
   const dispatch = useDispatch();
-  const spot = useSelector((state) => state.spot);
+  const spot = useSelector((state) => state.spots);
 
   useEffect(() => {
     dispatch(fetchSpotDetail(spotId));
   }, [dispatch]);
 
-  console.log(spot);
+  if (!spot) return null;
 
-  return <div>'spot detail page'</div>;
+  console.log(spot.SpotImage);
+  return (
+    <div>
+      <div>{spot.name}</div>
+      <div>{`${spot.city}, ${spot.country}`}</div>
+      <div>{`stars ${spot.avgStarRating}`}</div>
+      <div>{`${spot.numReviews} reviews`}</div>
+      <div>
+        {spot.SpotImage &&
+          spot.SpotImage.map((img) => <img src={img.url} alt={spot.name} />)}
+      </div>
+    </div>
+  );
 };
 
 export default SpotDetailPage;
