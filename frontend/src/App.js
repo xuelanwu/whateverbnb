@@ -9,6 +9,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import SpotDetailPage from "./components/SpotDetailPage";
+import CreateSpotPage from "./components/CreateSpotPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/spots/:spotId">
             <SpotDetailPage />
+          </Route>
+          <Route path="/spots">
+            <CreateSpotPage />
           </Route>
           <Route path="/login">
             <LoginFormPage />
