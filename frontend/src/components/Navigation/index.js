@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import ProfileButton from "./ProfileButton";
+import CreateSpotButton from "./CreateSpotButton";
 
 const Navigation = ({ isLoaded }) => {
   const user = useSelector((state) => state.session.user);
@@ -25,6 +26,7 @@ const Navigation = ({ isLoaded }) => {
         <NavLink exact to="/">
           Home
         </NavLink>
+        <CreateSpotButton />
         {isLoaded && sessionLinks}
       </li>
     </ul>
