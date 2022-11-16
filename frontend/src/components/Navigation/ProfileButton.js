@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { logout } from "../../store/session";
 
-const ProfileButton = ({ user }) => {
+const ProfileButton = ({ user, setLogin, setShowModal }) => {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -29,19 +29,50 @@ const ProfileButton = ({ user }) => {
   };
 
   return (
-    <div>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+    <div className="profile-dropdown-container">
+      <button className="profile-dropdown-menu-button" onClick={openMenu}>
+        <i className="fa-solid fa-bars fa-lg"></i>
       </button>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={handleLogout}>Log Out</button>
-          </li>
-        </ul>
-      )}
+      {showMenu &&
+        (user ? (
+          <ul className="profile-dropdown">
+            <li>{user.username}</li>
+            <li>{user.email}</li>
+            <li>
+              <button
+                onClick={handleLogout}
+                className="profile-dropdown-button"
+              >
+                Log Out
+              </button>
+            </li>
+          </ul>
+        ) : (
+          <ul className="profile-dropdown">
+            <li>
+              <button
+                className="profile-dropdown-button signup"
+                onClick={() => {
+                  setLogin(false);
+                  setShowModal(true);
+                }}
+              >
+                Sign Up
+              </button>
+            </li>
+            <li>
+              <button
+                className="profile-dropdown-button login"
+                onClick={() => {
+                  setLogin(true);
+                  setShowModal(true);
+                }}
+              >
+                Log In
+              </button>
+            </li>
+          </ul>
+        ))}
     </div>
   );
 };
