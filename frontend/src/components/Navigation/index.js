@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./index.css";
 
 import ProfileButton from "./ProfileButton";
+import CreateSpotButton from "./CreateSpotButton";
 // import LoginFormModal from "../LoginFormModal";
 // import SignupFormModal from "../SignupFormModal";
 import { useState } from "react";
@@ -35,6 +36,10 @@ const Navigation = ({ isLoaded }) => {
           <NavLink exact to="/">
             <i className="fa-regular fa-w fa-2xl"></i>
           </NavLink>
+        </li>
+        <li>
+          {" "}
+          <CreateSpotButton />
         </li>
         <li className="nav-items dropdown">
           {isLoaded && (

@@ -12,7 +12,8 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(fetchAllSpots());
   }, [dispatch]);
-
+  console.log("HomePage", spots);
+  console.log("HomePage", spotList);
   if (spots.spots === null) return;
   return (
     <div className="spot-card-container">

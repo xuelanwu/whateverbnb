@@ -27,8 +27,8 @@ const getSpotReview = async (spot) => {
   });
   const { numReviews, avgRating } = spotReviews[0].dataValues;
   if (numReviews == 0) {
-    result.numReviews = "We'd love to hear from you!";
-    result.avgRating = "We'd love to hear from you!";
+    result.numReviews = null;
+    result.avgRating = null;
   } else {
     result.numReviews = numReviews;
     result.avgRating = avgRating;
@@ -176,7 +176,7 @@ router.get("/:spotId", async (req, res, next) => {
   if (spotImages.length > 0) {
     result.SpotImage = spotImages;
   } else {
-    result.SpotImage = "Let's add some photos!";
+    result.SpotImage = null;
   }
 
   const owner = await spot.getUser({
