@@ -11,6 +11,7 @@ import { restoreCSRF, csrfFetch } from "./store/csrf";
 import configureStore from "./store";
 
 import * as sessionActions from "./store/session";
+import * as spotActions from "./store/spot";
 
 import ModalProvider from "./context/Modal";
 
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV !== "production") {
   window.csrfFetch = csrfFetch;
   window.store = store;
   window.sessionActions = sessionActions;
+  window.spotActions = spotActions;
 }
 
 function Root() {
