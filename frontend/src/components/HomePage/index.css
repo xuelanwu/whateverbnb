@@ -1,0 +1,23 @@
+.spot-card-container {
+  width: 95%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 50px;
+}
+
+.spot-card-container li {
+  list-style-type: none;
+}
+
+.spot-card {
+  padding-right: 30px;
+  padding-bottom: 30px;
+}
+
+.spot-card-image-box img {
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+}

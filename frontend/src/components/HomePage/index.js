@@ -2,6 +2,7 @@ import { fetchAllSpots } from "../../store/spot";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import SpotCard from "./SpotCard";
+import "./index.css";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const HomePage = () => {
 
   if (spots.spots === null) return;
   return (
-    <div>
+    <div className="spot-card-container">
       {spotList.map((spot) => {
         return (
           <li key={`spotId-${spot.id}`}>
