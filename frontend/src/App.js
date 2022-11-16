@@ -4,9 +4,12 @@ import { useDispatch } from "react-redux";
 
 import { restoreUser } from "./store/session";
 
-import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
+import HomePage from "./components/HomePage";
+import SpotDetailPage from "./components/SpotDetailPage";
+import CreateSpotPage from "./components/CreateSpotPage";
+
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,11 +24,14 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login">
-            <LoginFormPage />
+          <Route path="/" exact>
+            <HomePage />
           </Route>
-          <Route path="/signup">
-            <SignupFormPage />
+          <Route path="/spots/:spotId">
+            <SpotDetailPage />
+          </Route>
+          <Route path="/spots">
+            <CreateSpotPage />
           </Route>
         </Switch>
       )}
