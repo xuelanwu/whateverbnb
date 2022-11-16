@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../store/session";
 import { Redirect } from "react-router-dom";
 
-const SignupForm = () => {
+const SignupForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -22,10 +22,12 @@ const SignupForm = () => {
       setErrors([]);
       return dispatch(
         signup({ firstName, lastName, username, email, password })
-      ).catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
+      )
+        .then(() => setShowModal(false))
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        });
     }
     return setErrors([
       "Confirm Password field must be the same as the Password field",

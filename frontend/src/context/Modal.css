@@ -20,5 +20,6 @@
 
 #modal-content {
   position: absolute;
-  background-color: white;
+  width: 60%;
+  background-color: yellow;
 }
