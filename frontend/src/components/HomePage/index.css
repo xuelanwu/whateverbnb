@@ -1,8 +1,9 @@
 .spot-card-container {
-  width: 95%;
+  width: 90%;
   margin: auto;
   display: flex;
   align-items: center;
+  justify-content: space-around;
   flex-wrap: wrap;
   padding-top: 50px;
 }
@@ -11,13 +12,22 @@
   list-style-type: none;
 }
 
+.navlink-spot-card {
+  text-decoration: none;
+  color: black;
+}
+
+.spot-card-city-box p {
+  font-weight: 600;
+}
+
 .spot-card {
   padding-right: 30px;
   padding-bottom: 30px;
 }
 
 .spot-card-image-box img {
-  height: 300px;
-  width: 300px;
+  height: 250px;
+  width: 250px;
   border-radius: 10px;
 }
