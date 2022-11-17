@@ -120,8 +120,11 @@ const spotReducer = (state = initialState, action) => {
       newState[action.spot.id] = action.spot;
       return newState;
     case EDIT_SPOT:
-      newState[action.spot.id] = action.spot;
-      return newState;
+      const newSpot = { ...state[action.spot.id] };
+      Object.keys(action.spot).forEach((key) => {
+        newSpot[key] = action.spot[key];
+      });
+      return { [action.spot.id]: newSpot };
     case DELETE_SPOT:
       delete newState[action.id];
       return newState;

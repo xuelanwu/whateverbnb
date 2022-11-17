@@ -11,13 +11,15 @@ const SpotForm = ({ setShowModal, setCreateSpot, createSpot }) => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [country, setCountry] = useState("");
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
+  const spot = useSelector((state) => state.spots[spotId]);
+
+  const [address, setAddress] = useState("" || spot.address);
+  const [city, setCity] = useState("" || spot.city);
+  const [state, setState] = useState("" || spot.state);
+  const [country, setCountry] = useState("" || spot.country);
+  const [name, setName] = useState("" || spot.name);
+  const [description, setDescription] = useState("" || spot.description);
+  const [price, setPrice] = useState("" || spot.price);
   const [img, setImg] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -38,12 +40,15 @@ const SpotForm = ({ setShowModal, setCreateSpot, createSpot }) => {
     return dispatch(
       createSpot ? fetchCreateSpot(spot) : fetchEditSpot(spotId, spot)
     )
-      .then(() => setShowModal(false))
       .then((spot) => {
         if (createSpot) {
           dispatch(fetchCreateSpotImage(spot.id, { url: img, preview: true }));
+          history.push(`/spots/${spot.id}`);
         }
-        history.push(`/spots/${spot.id}`);
+      })
+      .then(() => {
+        setShowModal(false);
+        console.log("spotForm setShowModal", setShowModal);
       })
       .catch(async (res) => {
         const data = await res.json();

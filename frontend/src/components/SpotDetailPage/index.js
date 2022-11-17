@@ -15,7 +15,6 @@ const SpotDetailPage = () => {
 
   useEffect(() => {
     dispatch(fetchSpotDetail(spotId));
-    console.log("spotId in spotDetail useEffect()", spotId);
   }, [dispatch, spotId]);
 
   if (!spot) return null;
