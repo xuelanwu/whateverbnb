@@ -31,7 +31,12 @@ const ProfileButton = ({ user, setLogin, setShowModal }) => {
   return (
     <div className="profile-dropdown-container">
       <button className="profile-dropdown-menu-button" onClick={openMenu}>
-        <i className="fa-solid fa-bars fa-lg"></i>
+        <div className="profile-menu-icon">
+          <i className="fa-solid fa-bars fa-lg"></i>
+        </div>
+        <div className="profile-avatar-icon">
+          <i className="fa-solid fa-user fa-lg"></i>
+        </div>
       </button>
       {showMenu &&
         (user ? (

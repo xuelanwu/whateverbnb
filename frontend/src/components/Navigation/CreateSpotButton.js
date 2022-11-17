@@ -5,7 +5,11 @@ const CreateSpotButton = () => {
   const handleClick = () => {
     history.push("/spots");
   };
-  return <button onClick={handleClick}>Become A host</button>;
+  return (
+    <button onClick={handleClick} className="create-spot-button">
+      Become A host
+    </button>
+  );
 };
 
 export default CreateSpotButton;

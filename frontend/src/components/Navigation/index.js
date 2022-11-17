@@ -32,33 +32,51 @@ const Navigation = ({ isLoaded }) => {
   return (
     <div className="nav-container">
       <ul className="nav-bar">
-        <li className="nav-items logo">
-          <NavLink exact to="/">
-            <i className="fa-regular fa-w fa-2xl"></i>
-          </NavLink>
-        </li>
-        <li>
-          {" "}
-          <CreateSpotButton />
-        </li>
-        <li className="nav-items dropdown">
-          {isLoaded && (
-            <ProfileButton
-              user={user}
-              setLogin={setLogin}
-              setShowModal={setShowModal}
-            />
-          )}
-        </li>
-        {showModal && (
-          <Modal onClose={() => setShowModal(false)}>
-            {login ? (
-              <LoginForm setShowModal={setShowModal} />
-            ) : (
-              <SignupForm setShowModal={setShowModal} />
+        <div>
+          <li className="nav-items logo">
+            <NavLink exact to="/">
+              <i class="fa-solid fa-wave-square fa-2xl"></i>
+            </NavLink>
+          </li>
+        </div>
+        <div className="nav-buttons">
+          <li className="nav-items search-field">
+            <div className="search-container">
+              <button className="search-button">Anywhere</button>
+              <button className="search-button">Any week</button>
+              <button className="search-button">Add guests</button>
+              <button className="search-icon">
+                <i className="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
+          </li>
+          <li className="nav-items nav-create-spot">
+            <CreateSpotButton />
+          </li>
+          <li className="nav-items globe-icon">
+            <div className="globe-icon-box">
+              <i className="fa-solid fa-globe"></i>
+            </div>
+          </li>
+          <li className="nav-items dropdown">
+            {isLoaded && (
+              <ProfileButton
+                user={user}
+                setLogin={setLogin}
+                setShowModal={setShowModal}
+              />
             )}
-          </Modal>
-        )}
+          </li>
+          {showModal && (
+            <Modal onClose={() => setShowModal(false)}>
+              {login ? (
+                <LoginForm setShowModal={setShowModal} />
+              ) : (
+                <SignupForm setShowModal={setShowModal} />
+              )}
+            </Modal>
+          )}
+        </div>
       </ul>
     </div>
   );
