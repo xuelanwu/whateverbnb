@@ -1,9 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { fetchCreateSpot, fetchCreateSpotImage } from "../../store/spot";
-import { useHistory } from "react-router-dom";
+import {
+  fetchCreateSpot,
+  fetchEditSpot,
+  fetchCreateSpotImage,
+} from "../../store/spot";
+import { useHistory, useParams } from "react-router-dom";
 
-const CreateSpot = () => {
+const SpotForm = ({ setShowModal, setCreateSpot, createSpot }) => {
+  const { spotId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
   const [address, setAddress] = useState("");
@@ -19,23 +24,27 @@ const CreateSpot = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
+    const spot = {
+      address,
+      city,
+      state,
+      country,
+      lat: 37.7645358,
+      lng: -122.4730327,
+      name,
+      description,
+      price,
+    };
     return dispatch(
-      fetchCreateSpot({
-        address,
-        city,
-        state,
-        country,
-        lat: 37.7645358,
-        lng: -122.4730327,
-        name,
-        description,
-        price,
-      })
+      createSpot ? fetchCreateSpot(spot) : fetchEditSpot(spotId, spot)
     )
       .then((spot) => {
-        dispatch(fetchCreateSpotImage(spot.id, { url: img, preview: true }));
+        if (createSpot) {
+          dispatch(fetchCreateSpotImage(spot.id, { url: img, preview: true }));
+        }
         history.push(`/spots/${spot.id}`);
       })
+      .then(() => setShowModal(false))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -111,18 +120,20 @@ const CreateSpot = () => {
           required
         />
       </label>
-      <label>
-        Add an image
-        <input
-          type="text"
-          value={img}
-          onChange={(e) => setImg(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Become A Host</button>
+      {createSpot && (
+        <label>
+          Add an image
+          <input
+            type="text"
+            value={img}
+            onChange={(e) => setImg(e.target.value)}
+            required
+          />
+        </label>
+      )}
+      <button type="submit">Submit</button>
     </form>
   );
 };
 
-export default CreateSpot;
+export default SpotForm;
