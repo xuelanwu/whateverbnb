@@ -35,7 +35,7 @@ const Navigation = ({ isLoaded }) => {
         <div>
           <li className="nav-items logo">
             <NavLink exact to="/">
-              <i class="fa-solid fa-wave-square fa-2xl"></i>
+              <i className="fa-solid fa-wave-square fa-2xl"></i>
             </NavLink>
           </li>
         </div>

@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { fetchSpotDetail } from "../../store/spot";
 import "./index.css";
 import EditSpotModal from "./EditSpotModal";
-import DeleteSpotModal from "./DeleteSpotModal";
+import DeleteModal from "./DeleteModal";
+import ReviewContainer from "./ReviewContainer";
 
 const SpotDetailPage = () => {
   const { spotId } = useParams();
@@ -42,9 +43,12 @@ const SpotDetailPage = () => {
         {user && user.id === spot.ownerId && (
           <div>
             <EditSpotModal />
-            <DeleteSpotModal />
+            <DeleteModal spot={true} spotId={spotId} />
           </div>
         )}
+      </div>
+      <div>
+        <ReviewContainer ownerId={spot.ownerId} />
       </div>
     </div>
   );

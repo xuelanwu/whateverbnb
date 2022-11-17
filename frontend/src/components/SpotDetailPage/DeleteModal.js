@@ -3,10 +3,11 @@ import { Modal } from "../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDeletespot } from "../../store/spot";
 import { useHistory, useParams } from "react-router-dom";
+import { fetchDeleteSpotReview } from "../../store/review";
 
-const DeleteSpotModal = () => {
+const DeleteModal = ({ spot, spotId, reviewId }) => {
   const [showModal, setShowModal] = useState(false);
-  const { spotId } = useParams();
+  // const { spotId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
   const [errors, setErrors] = useState([]);
@@ -18,14 +19,23 @@ const DeleteSpotModal = () => {
   const handleDelete = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(fetchDeletespot(spotId))
+    console.log(spot);
+    return dispatch(
+      spot ? fetchDeletespot(spotId) : fetchDeleteSpotReview(reviewId)
+    )
       .then(() => setShowModal(false))
-      .then(() => history.push("/"));
+      .then(() => (spot ? history.push("/") : history.push(spotId)))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
   };
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Delete Spot</button>
+      <button onClick={() => setShowModal(true)}>
+        {spot ? "Delete Spot" : "Delete Review"}
+      </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <div className="delete-modal-block">
@@ -51,4 +61,4 @@ const DeleteSpotModal = () => {
   );
 };
 
-export default DeleteSpotModal;
+export default DeleteModal;

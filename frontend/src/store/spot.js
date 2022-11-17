@@ -37,24 +37,41 @@ export const fetchCreateSpot = (spot) => async (dispatch) => {
     method: "POST",
     body: JSON.stringify(spot),
   });
-  const data = await response.json();
-  const { id, address, city, state, country, name, description, price } = data;
-  dispatch(
-    createSpot({ id, address, city, state, country, name, description, price })
-  );
-  return data;
+  if (response.ok) {
+    const data = await response.json();
+    const { id, address, city, state, country, name, description, price } =
+      data;
+    dispatch(
+      createSpot({
+        id,
+        address,
+        city,
+        state,
+        country,
+        name,
+        description,
+        price,
+      })
+    );
+    return data;
+  }
+  return response;
 };
 export const fetchEditSpot = (spotId, spot) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: "PUT",
     body: JSON.stringify(spot),
   });
-  const data = await response.json();
-  const { id, address, city, state, country, name, description, price } = data;
-  dispatch(
-    editSpot({ id, address, city, state, country, name, description, price })
-  );
-  return data;
+  if (response.ok) {
+    const data = await response.json();
+    const { id, address, city, state, country, name, description, price } =
+      data;
+    dispatch(
+      editSpot({ id, address, city, state, country, name, description, price })
+    );
+    return data;
+  }
+  return response;
 };
 export const fetchDeletespot = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}`, {
@@ -62,7 +79,7 @@ export const fetchDeletespot = (spotId) => async (dispatch) => {
   });
   const data = await response.json();
   dispatch(deleteSpot(spotId));
-  return data;
+  return response;
 };
 
 export const fetchSpotDetail = (spotId) => async (dispatch) => {
@@ -77,9 +94,12 @@ export const fetchCreateSpotImage = (spotId, img) => async (dispatch) => {
     method: "POST",
     body: JSON.stringify(img),
   });
-  const data = await response.json();
-  dispatch(addSpotImage(spotId));
-  return data;
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(addSpotImage(spotId));
+    return data;
+  }
+  return response;
 };
 
 const initialState = { spots: null };
