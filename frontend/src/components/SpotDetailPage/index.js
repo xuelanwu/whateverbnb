@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchSpotDetail } from "../../store/spot";
 import "./index.css";
+import EditSpotModal from "./EditSpotModal";
 
 const SpotDetailPage = () => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
-  const spot = useSelector((state) => state.spots);
+  const spot = useSelector((state) => state.spots[spotId]);
+  const user = useSelector((state) => state.session.user);
   console.log("spotId in spotDetailPage", spotId);
+  console.log("user in SpotDetail", user);
 
   useEffect(() => {
     dispatch(fetchSpotDetail(spotId));
@@ -35,6 +38,9 @@ const SpotDetailPage = () => {
                 />
               ))
             : null)}
+      </div>
+      <div className="edit-spot-button-box">
+        {user && user.id === spot.ownerId && <EditSpotModal />}
       </div>
     </div>
   );
