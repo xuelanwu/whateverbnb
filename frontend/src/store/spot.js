@@ -2,8 +2,10 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALL_SPOTS = "spot/getAllSpots";
 const GET_SPOT_DETAIL = "spot/getSpotDetail";
-// const CREATE_SPOT = "spot/createSpot";
-// const ADD_SPOT_IMAGE = "spot/addSpotImage";
+const CREATE_SPOT = "spot/createSpot";
+const EDIT_SPOT = "spot/editSpot";
+const DELETE_SPOT = "spot/deleteSpot";
+const ADD_SPOT_IMAGE = "spot/addSpotImage";
 
 const getAllSpots = (spots) => {
   return { type: GET_ALL_SPOTS, spots };
@@ -11,12 +13,18 @@ const getAllSpots = (spots) => {
 const getSpotDetail = (spot) => {
   return { type: GET_SPOT_DETAIL, spot };
 };
-// const createSpot = (spot) => {
-//   return { type: CREATE_SPOT, spot };
-// };
-// const addSpotImage = (spotId, img) => {
-//   return { type: CREATE_SPOT_IMAGE, spotId, img };
-// };
+const createSpot = (spot) => {
+  return { type: CREATE_SPOT, spot };
+};
+const editSpot = (spot) => {
+  return { type: EDIT_SPOT, spot };
+};
+const deleteSpot = (id) => {
+  return { type: DELETE_SPOT, id };
+};
+const addSpotImage = (spotId, img) => {
+  return { type: ADD_SPOT_IMAGE, spotId, img };
+};
 
 export const fetchAllSpots = () => async (dispatch) => {
   const response = await csrfFetch("/api/spots");
@@ -29,10 +37,49 @@ export const fetchCreateSpot = (spot) => async (dispatch) => {
     method: "POST",
     body: JSON.stringify(spot),
   });
+  if (response.ok) {
+    const data = await response.json();
+    const { id, address, city, state, country, name, description, price } =
+      data;
+    dispatch(
+      createSpot({
+        id,
+        address,
+        city,
+        state,
+        country,
+        name,
+        description,
+        price,
+      })
+    );
+    return data;
+  }
+  return response;
+};
+export const fetchEditSpot = (spotId, spot) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
+    method: "PUT",
+    body: JSON.stringify(spot),
+  });
+  if (response.ok) {
+    const data = await response.json();
+    const { id, address, city, state, country, name, description, price } =
+      data;
+    dispatch(
+      editSpot({ id, address, city, state, country, name, description, price })
+    );
+    return data;
+  }
+  return response;
+};
+export const fetchDeletespot = (spotId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
+    method: "DELETE",
+  });
   const data = await response.json();
-  const { id } = data;
-  dispatch(fetchSpotDetail(id));
-  return data;
+  dispatch(deleteSpot(spotId));
+  return response;
 };
 
 export const fetchSpotDetail = (spotId) => async (dispatch) => {
@@ -43,36 +90,44 @@ export const fetchSpotDetail = (spotId) => async (dispatch) => {
 };
 
 export const fetchCreateSpotImage = (spotId, img) => async (dispatch) => {
-  console.log(img);
   const response = await csrfFetch(`/api/spots/${spotId}/images`, {
     method: "POST",
     body: JSON.stringify(img),
   });
-
-  const data = await response.json();
-  dispatch(fetchSpotDetail(spotId));
-  return data;
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(addSpotImage(spotId));
+    return data;
+  }
+  return response;
 };
 
 const initialState = { spots: null };
 
 const spotReducer = (state = initialState, action) => {
-  let newState = {};
+  let newState = { ...state };
   switch (action.type) {
     case GET_ALL_SPOTS:
+      newState = {};
       action.spots.forEach((spot) => {
         newState[spot.id] = spot;
       });
       return newState;
     case GET_SPOT_DETAIL:
-      newState = action.spot;
+      newState[action.spot.id] = action.spot;
       return newState;
-    // case CREATE_SPOT:
-    //   newState = action.spot;
-    //   return newState;
-    // case ADD_SPOT_IMAGE:
-    //   console.log(action);
-    //   return newState;
+    case CREATE_SPOT:
+      newState[action.spot.id] = action.spot;
+      return newState;
+    case EDIT_SPOT:
+      newState[action.spot.id] = action.spot;
+      return newState;
+    case DELETE_SPOT:
+      delete newState[action.id];
+      return newState;
+    case ADD_SPOT_IMAGE:
+      newState[action.spot.id].previewImage = action.img.url;
+      return newState;
     default:
       return state;
   }
