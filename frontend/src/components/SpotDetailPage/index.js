@@ -10,8 +10,6 @@ const SpotDetailPage = () => {
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots[spotId]);
   const user = useSelector((state) => state.session.user);
-  console.log("spotId in spotDetailPage", spotId);
-  console.log("user in SpotDetail", user);
 
   useEffect(() => {
     dispatch(fetchSpotDetail(spotId));
