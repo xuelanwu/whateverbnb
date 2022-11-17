@@ -38,13 +38,13 @@ const SpotForm = ({ setShowModal, setCreateSpot, createSpot }) => {
     return dispatch(
       createSpot ? fetchCreateSpot(spot) : fetchEditSpot(spotId, spot)
     )
+      .then(() => setShowModal(false))
       .then((spot) => {
         if (createSpot) {
           dispatch(fetchCreateSpotImage(spot.id, { url: img, preview: true }));
         }
         history.push(`/spots/${spot.id}`);
       })
-      .then(() => setShowModal(false))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);

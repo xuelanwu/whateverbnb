@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { fetchSpotDetail } from "../../store/spot";
 import "./index.css";
 import EditSpotModal from "./EditSpotModal";
+import DeleteSpotModal from "./DeleteSpotModal";
 
 const SpotDetailPage = () => {
   const { spotId } = useParams();
@@ -38,7 +39,12 @@ const SpotDetailPage = () => {
             : null)}
       </div>
       <div className="edit-spot-button-box">
-        {user && user.id === spot.ownerId && <EditSpotModal />}
+        {user && user.id === spot.ownerId && (
+          <div>
+            <EditSpotModal />
+            <DeleteSpotModal />
+          </div>
+        )}
       </div>
     </div>
   );
