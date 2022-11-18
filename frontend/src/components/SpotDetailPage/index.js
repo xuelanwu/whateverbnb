@@ -30,7 +30,7 @@ const SpotDetailPage = () => {
             <i className="fa-solid fa-star"></i>
             {spot.numReviews ? (
               <span>
-                <span>{spot.avgStarRating.toFixed(1)} ·</span>
+                <span>{`${spot.avgStarRating.toFixed(1)}`} ·</span>
                 <span>{`${spot.numReviews} reviews`}</span>
               </span>
             ) : (
