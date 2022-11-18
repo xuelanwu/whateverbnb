@@ -1,4 +1,4 @@
-.signup-form {
+.signup-login-form {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -6,7 +6,8 @@
 }
 
 .form-modal-block,
-.form-modal-welcome-block {
+.form-modal-welcome-block,
+.form-modal-error-block {
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -14,22 +15,20 @@
   margin: auto;
 }
 
-.form-modal-title-block {
-  display: flex;
-  border: 1px solid transparent;
-  border-bottom-color: #dddddd;
-  padding: 15px 35px;
+.form-modal-error-block {
+  padding-bottom: 1em;
+}
+
+.form-modal-error-block li {
+  list-style-type: none;
+  color: red;
 }
 
 .close-button-box button {
   border: none;
   outline: none;
-  font-size: 25px;
+  font-size: 1.5rem;
   background-color: transparent;
-}
-
-.form-modal-title-box {
-  padding-left: 245px;
 }
 
 .form-modal-welcome-block {
@@ -37,7 +36,7 @@
   padding-bottom: 15px;
 }
 .form-modal-welcome-block h2 {
-  font-size: 20px;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
@@ -47,7 +46,7 @@
   margin-bottom: 15px;
   background-color: white;
   padding-left: 10px;
-  font-size: 15px;
+  font-size: 1rem;
   color: rgb(113, 113, 113);
 }
 
@@ -56,10 +55,10 @@
   outline: none;
   padding-top: 2px;
   padding-bottom: 10px;
-  font-size: 20px;
+  font-size: 1.2rem;
 }
 
-.modal-signup-button {
+.modal-signup-login-button {
   padding: 15px;
   background-color: RGB(224, 25, 97);
   border: none;
@@ -69,6 +68,6 @@
   border: none;
   outline: none;
   background-color: transparent;
-  font-size: 20px;
+  font-size: 1.5rem;
   color: white;
 }

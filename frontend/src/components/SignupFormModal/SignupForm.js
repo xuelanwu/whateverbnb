@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../store/session";
 import { Redirect } from "react-router-dom";
+import UserFormTitle from "../UserFormTitle";
 import "./index.css";
 
 const SignupForm = ({ setShowModal }) => {
@@ -35,31 +36,18 @@ const SignupForm = ({ setShowModal }) => {
     ]);
   };
 
-  const handleClose = () => {
-    setShowModal(false);
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="signup-form">
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={`signupError-${idx + 1}`} className="modal-error-msg">
-            {error}
-          </li>
-        ))}
-      </ul>
-      <div className="form-modal-title-block">
-        <div className="close-button-box">
-          <button onClick={handleClose}>
-            <i className="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-        <div className="form-modal-title-box">
-          <h3>Log in or sign up</h3>
-        </div>
-      </div>
+    <form onSubmit={handleSubmit} className="signup-login-form">
+      <UserFormTitle setShowModal={setShowModal} />
       <div className="form-modal-welcome-block">
         <h2>Welcome to Airbnb</h2>
+      </div>
+      <div className="form-modal-error-block">
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={`loginError-${idx + 1}`}>{error}</li>
+          ))}
+        </ul>
       </div>
       <div className="form-modal-block">
         <label htmlFor="firstName">First Name</label>
@@ -119,7 +107,7 @@ const SignupForm = ({ setShowModal }) => {
           required
         />
       </div>
-      <div className="form-modal-block modal-signup-button">
+      <div className="form-modal-block modal-signup-login-button">
         <button type="submit">Sign Up</button>
       </div>
     </form>

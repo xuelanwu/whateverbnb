@@ -26,11 +26,10 @@ const SpotDetailPage = () => {
       </div>
       <div className="spot-subtitle-block">
         <div className="spot-subtitle-block-left">
-          <div className="review-box">
+          <div className="subtitle-review-box">
             <i className="fa-solid fa-star"></i>
             {spot.numReviews ? (
               <span>
-                {console.log(spot.avgStarRating)}
                 <span>{spot.avgStarRating.toFixed(1)} ·</span>
                 <span>{`${spot.numReviews} reviews`}</span>
               </span>
@@ -39,15 +38,16 @@ const SpotDetailPage = () => {
             )}
           </div>
           <div className="superhost-box">
-            <span>·</span>
+            <span className="dot-span">·</span>
             <i className="fa-solid fa-medal"></i>
             <span>Superhost</span>
           </div>
           <div className="address-box">
-            <span>·</span>
+            <span className="dot-span">·</span>
             <span>
-              <span>{spot.city}</span>, <span>{spot.state}</span>,
-              <span>{spot.country}</span>
+              <span className="address-span">{spot.city}</span>,{" "}
+              <span className="address-span">{spot.state}</span>,{" "}
+              <span className="address-span">{spot.country}</span>
             </span>
           </div>
         </div>
@@ -55,13 +55,13 @@ const SpotDetailPage = () => {
           <div className="share-save-box">
             <span>
               <i class="fa-solid fa-arrow-up-from-bracket"></i>
-              <span>Share</span>
+              <span className="share-save-span">Share</span>
             </span>
           </div>
           <div className="share-save-box">
             <span>
               <i class="fa-regular fa-heart"></i>
-              <span>Share</span>
+              <span className="share-save-span">Save</span>
             </span>
           </div>
         </div>
@@ -69,20 +69,9 @@ const SpotDetailPage = () => {
 
       <div className="spot-image-container">
         {spot.SpotImage &&
-          (spot.SpotImage.length > 0
-            ? spot.SpotImage.map((img, idx) => {
-                return (
-                  <div className={`spot-detail-img-${idx}`}>
-                    <img
-                      key={`img-${img.id}`}
-                      src={img.url}
-                      alt={spot.name}
-                      style={{ width: "200px", height: "200px" }}
-                    />
-                  </div>
-                );
-              })
-            : null)}
+          (spot.SpotImage.length > 0 ? (
+            <img src={spot.SpotImage[0].url} alt={spot.name} />
+          ) : null)}
       </div>
       <div className="edit-spot-button-box">
         {user && user.id === spot.ownerId && (
@@ -93,7 +82,7 @@ const SpotDetailPage = () => {
         )}
       </div>
       <div>
-        <ReviewContainer ownerId={spot.ownerId} />
+        <ReviewContainer ownerId={spot.ownerId} spot={spot} />
       </div>
     </div>
   );

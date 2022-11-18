@@ -6,7 +6,7 @@ const CreateReviewModal = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <>
+    <div className="create-review-modal">
       <button
         onClick={() => setShowModal(true)}
         className="create-review-button"
@@ -18,7 +18,7 @@ const CreateReviewModal = () => {
           <ReviewForm setShowModal={setShowModal} />
         </Modal>
       )}
-    </>
+    </div>
   );
 };
 

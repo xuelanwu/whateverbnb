@@ -33,7 +33,10 @@ const DeleteModal = ({ spot, spotId, reviewId }) => {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>
+      <button
+        onClick={() => setShowModal(true)}
+        className="delete-review-button"
+      >
         {spot ? "Delete Spot" : "Delete Review"}
       </button>
       {showModal && (
