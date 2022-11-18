@@ -7,19 +7,19 @@ import {
 } from "../../store/spot";
 import { useHistory, useParams } from "react-router-dom";
 
-const SpotForm = ({ setShowModal, setCreateSpot, createSpot }) => {
+const CreateSpotForm = ({ setShowModal, spot, createSpot }) => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const spot = useSelector((state) => state.spots[spotId]);
+  const stateSpot = useSelector((state) => state.spots[spotId]);
 
-  const [address, setAddress] = useState("" || spot.address);
-  const [city, setCity] = useState("" || spot.city);
-  const [state, setState] = useState("" || spot.state);
-  const [country, setCountry] = useState("" || spot.country);
-  const [name, setName] = useState("" || spot.name);
-  const [description, setDescription] = useState("" || spot.description);
-  const [price, setPrice] = useState("" || spot.price);
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
   const [img, setImg] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -141,4 +141,4 @@ const SpotForm = ({ setShowModal, setCreateSpot, createSpot }) => {
   );
 };
 
-export default SpotForm;
+export default CreateSpotForm;

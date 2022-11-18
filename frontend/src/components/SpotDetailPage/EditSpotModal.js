@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Modal } from "../../context/Modal";
-import SpotForm from "../SpotForm";
+import EditSpotForm from "../SpotForm/EditSpotForm";
 
-const EditSpotModal = () => {
+const EditSpotModal = ({ spot }) => {
   const [showModal, setShowModal] = useState(false);
   const [createSpot, setCreateSpot] = useState(false);
 
@@ -11,11 +11,7 @@ const EditSpotModal = () => {
       <button onClick={() => setShowModal(true)}>Edit Spot</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <SpotForm
-            setShowModal={setShowModal}
-            setCreateSpot={setCreateSpot}
-            createSpot={createSpot}
-          />
+          <EditSpotForm setShowModal={setShowModal} spot={spot} />
         </Modal>
       )}
     </>

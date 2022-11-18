@@ -76,7 +76,7 @@ const SpotDetailPage = () => {
       <div className="edit-spot-button-box">
         {user && user.id === spot.ownerId && (
           <div>
-            <EditSpotModal />
+            <EditSpotModal spot={spot} />
             <DeleteModal spot={true} spotId={spotId} />
           </div>
         )}
