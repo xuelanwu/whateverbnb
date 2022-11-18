@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../store/session";
 import { Redirect } from "react-router-dom";
+import "./index.css";
 
 const SignupForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
@@ -34,66 +35,93 @@ const SignupForm = ({ setShowModal }) => {
     ]);
   };
 
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="signup-form">
       <ul>
         {errors.map((error, idx) => (
-          <li key={`signupError-${idx + 1}`}>{error}</li>
+          <li key={`signupError-${idx + 1}`} className="modal-error-msg">
+            {error}
+          </li>
         ))}
       </ul>
-      <label>
-        First Name
+      <div className="form-modal-title-block">
+        <div className="close-button-box">
+          <button onClick={handleClose}>
+            <i className="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div className="form-modal-title-box">
+          <h3>Log in or sign up</h3>
+        </div>
+      </div>
+      <div className="form-modal-welcome-block">
+        <h2>Welcome to Airbnb</h2>
+      </div>
+      <div className="form-modal-block">
+        <label htmlFor="firstName">First Name</label>
         <input
+          name="firstName"
           type="text"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
         />
-      </label>
-      <label>
-        Last Name
+      </div>
+      <div className="form-modal-block">
+        <label htmlFor="lastName">Last Name</label>
         <input
+          name="lastName"
           type="text"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
         />
-      </label>
-      <label>
-        Username
+      </div>
+      <div className="form-modal-block">
+        <label htmlFor="username">Username</label>
         <input
+          name="username"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Email
+      </div>
+      <div className="form-modal-block">
+        <label htmlFor="email">Email</label>
         <input
+          name="email"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Password
+      </div>
+      <div className="form-modal-block">
+        <label htmlFor="password">Password</label>
         <input
+          name="password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Confirm Password
+      </div>
+      <div className="form-modal-block">
+        <label htmlFor="confirmPassword">Confirm Password</label>
         <input
+          name="confirmPassword"
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
-      </label>
-      <button type="submit">Sign Up</button>
+      </div>
+      <div className="form-modal-block modal-signup-button">
+        <button type="submit">Sign Up</button>
+      </div>
     </form>
   );
 };

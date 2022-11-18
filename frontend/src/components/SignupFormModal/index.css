@@ -1,0 +1,74 @@
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: left;
+}
+
+.form-modal-block,
+.form-modal-welcome-block {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 90%;
+  margin: auto;
+}
+
+.form-modal-title-block {
+  display: flex;
+  border: 1px solid transparent;
+  border-bottom-color: #dddddd;
+  padding: 15px 35px;
+}
+
+.close-button-box button {
+  border: none;
+  outline: none;
+  font-size: 25px;
+  background-color: transparent;
+}
+
+.form-modal-title-box {
+  padding-left: 245px;
+}
+
+.form-modal-welcome-block {
+  padding: 10px 0;
+  padding-bottom: 15px;
+}
+.form-modal-welcome-block h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.form-modal-block {
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  background-color: white;
+  padding-left: 10px;
+  font-size: 15px;
+  color: rgb(113, 113, 113);
+}
+
+.form-modal-block input {
+  border: none;
+  outline: none;
+  padding-top: 2px;
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+
+.modal-signup-button {
+  padding: 15px;
+  background-color: RGB(224, 25, 97);
+  border: none;
+}
+
+.form-modal-block button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 20px;
+  color: white;
+}

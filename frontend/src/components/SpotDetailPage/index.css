@@ -2,3 +2,42 @@
   width: 95%;
   margin: auto;
 }
+
+.spot-subtitle-block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.spot-subtitle-block-left {
+  display: flex;
+}
+.spot-subtitle-block-right {
+  display: flex;
+}
+
+.spot-image-container {
+  border: 2px red solid;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "spot-detail-img-0 spot-detail-img-1 spot-detail-img-2"
+    "spot-detail-img-0 spot-detail-img-3 spot-detail-img-4";
+}
+
+.spot-detail-img-0 {
+  grid-area: spot-detail-img-0;
+  background-color: aquamarine;
+}
+.spot-detail-img-1 {
+  grid-area: spot-detail-img-1;
+  background-color: yellow;
+}
+.spot-detail-img-2 {
+  grid-area: spot-detail-img-2;
+  background-color: purple;
+}
+.spot-detail-img-3 {
+  grid-area: spot-detail-img-3;
+  background-color: blue;
+}
