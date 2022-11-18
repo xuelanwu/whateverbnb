@@ -54,7 +54,7 @@ const SpotDetailPage = () => {
         <div className="spot-subtitle-block-right">
           <div className="share-save-box">
             <span>
-              <i class="fa-solid fa-arrow-up-from-bracket"></i>
+              <i className="fa-solid fa-arrow-up-from-bracket"></i>
               <span className="share-save-span">Share</span>
             </span>
           </div>

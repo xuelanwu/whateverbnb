@@ -27,9 +27,7 @@ const ReviewContainer = ({ ownerId, spot }) => {
             {spot.numReviews && (
               <span>
                 <i className="fa-solid fa-star"></i>
-                <span className="avg-star-span">
-                  {spot.avgStarRating.toFixed(1)}{" "}
-                </span>
+                <span className="avg-star-span">{spot.avgStarRating} </span>
                 <span>·</span>
                 <span className="num-reviews-span">{`${spot.numReviews} reviews`}</span>
               </span>
