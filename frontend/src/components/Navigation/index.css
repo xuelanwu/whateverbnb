@@ -3,21 +3,29 @@ button {
 }
 
 .nav-container {
-  padding: 20px 40px;
+  width: 100%;
+  padding: 20px 0;
   border: 1px solid #dddddd;
 }
 .nav-bar {
+  width: 90%;
+  margin: auto;
   display: flex;
   justify-content: space-between;
-  gap: 10px;
   align-items: center;
+}
+.nav-block-logo {
+  width: 33%;
+}
+
+.nav-block-filter {
+  width: 50%;
 }
 
 .nav-buttons {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 50px;
 }
 
 .nav-items {
@@ -27,13 +35,13 @@ button {
 
 .nav-items.logo {
   display: block;
-  padding-right: 100px;
 }
 
 .fa-wave-square {
   color: #ff395c;
 }
 .search-container {
+  width: 100%;
   background-color: white;
   padding: 10px 20px;
   border: 1px solid #dddddd;
@@ -45,7 +53,7 @@ button {
 }
 
 .search-button {
-  font-size: 15px;
+  font-size: 1rem;
   outline: none;
   padding-right: 10px;
   padding-left: 10px;
@@ -81,8 +89,9 @@ button {
   background-color: transparent;
   outline: none;
   border: none;
-  font-size: 15px;
-  font-weight: 5px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  width: max-content;
 }
 
 .nav-create-spot:hover {
@@ -92,7 +101,7 @@ button {
 .globe-icon-box {
   border: 1px solid transparent;
   border-radius: 50%;
-  padding: 12px 15px;
+  padding: 10px 12px;
 }
 
 .globe-icon-box:hover {
@@ -101,6 +110,7 @@ button {
 
 .nav-items.dropdown {
   position: relative;
+  padding-left: 5px;
 }
 
 .profile-dropdown-menu-button {

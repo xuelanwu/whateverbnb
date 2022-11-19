@@ -60,7 +60,7 @@ const SpotDetailPage = () => {
           </div>
           <div className="share-save-box">
             <span>
-              <i class="fa-regular fa-heart"></i>
+              <i className="fa-regular fa-heart"></i>
               <span className="share-save-span">Save</span>
             </span>
           </div>

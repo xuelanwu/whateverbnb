@@ -8,7 +8,7 @@ const CreateSpotModal = () => {
   return (
     <>
       <button onClick={() => setShowModal(true)} className="create-spot-button">
-        Become A Host
+        Airbnb Your Home
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>

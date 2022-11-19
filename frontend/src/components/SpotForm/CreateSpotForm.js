@@ -37,18 +37,13 @@ const CreateSpotForm = ({ setShowModal, spot, createSpot }) => {
       description,
       price,
     };
-    return dispatch(
-      createSpot ? fetchCreateSpot(spot) : fetchEditSpot(spotId, spot)
-    )
+    return dispatch(fetchCreateSpot(spot))
       .then((spot) => {
-        if (createSpot) {
-          dispatch(fetchCreateSpotImage(spot.id, { url: img, preview: true }));
-          history.push(`/spots/${spot.id}`);
-        }
+        dispatch(fetchCreateSpotImage(spot.id, { url: img, preview: true }));
+        history.push(`/spots/${spot.id}`);
       })
       .then(() => {
         setShowModal(false);
-        console.log("spotForm setShowModal", setShowModal);
       })
       .catch(async (res) => {
         const data = await res.json();
@@ -62,70 +57,82 @@ const CreateSpotForm = ({ setShowModal, spot, createSpot }) => {
           <li key={`signupError-${idx + 1}`}>{error}</li>
         ))}
       </ul>
-      <label>
-        Address
+      <div className="form-modal-block">
+        <label>Address</label>
         <input
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           required
         />
-      </label>
-      <label>
-        City
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        State
-        <input
-          type="text"
-          value={state}
-          onChange={(e) => setState(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Country
-        <input
-          type="text"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Name
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Description
-        <input
-          type="textarea"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Price
-        <input
-          type="text"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          required
-        />
-      </label>
-      {createSpot && (
+      </div>
+      <div className="form-modal-block">
+        <label>
+          City
+          <input
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            required
+          />
+        </label>
+      </div>
+      <div className="form-modal-block">
+        <label>
+          State
+          <input
+            type="text"
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+            required
+          />
+        </label>
+      </div>
+      <div className="form-modal-block">
+        <label>
+          Country
+          <input
+            type="text"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            required
+          />
+        </label>
+      </div>
+      <div className="form-modal-block">
+        <label>
+          Name
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </label>
+      </div>
+      <div className="form-modal-block">
+        <label>
+          Description
+          <input
+            type="textarea"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+        </label>
+      </div>
+      <div className="form-modal-block">
+        <label>
+          Price
+          <input
+            type="text"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            required
+          />
+        </label>
+      </div>
+      <div className="form-modal-block">
         <label>
           Add an image
           <input
@@ -135,7 +142,8 @@ const CreateSpotForm = ({ setShowModal, spot, createSpot }) => {
             required
           />
         </label>
-      )}
+      </div>
+
       <button type="submit">Submit</button>
     </form>
   );

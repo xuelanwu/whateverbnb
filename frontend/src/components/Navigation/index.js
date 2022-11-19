@@ -32,14 +32,14 @@ const Navigation = ({ isLoaded }) => {
   return (
     <div className="nav-container">
       <ul className="nav-bar">
-        <div>
+        <div className="nav-block-logo">
           <li className="nav-items logo">
             <NavLink exact to="/">
               <i className="fa-solid fa-wave-square fa-2xl"></i>
             </NavLink>
           </li>
         </div>
-        <div className="nav-buttons">
+        <div className="nav-block-filter">
           <li className="nav-items search-field">
             <div className="search-container">
               <button className="search-button">Anywhere</button>
@@ -50,6 +50,8 @@ const Navigation = ({ isLoaded }) => {
               </button>
             </div>
           </li>
+        </div>
+        <div className="nav-block-buttons nav-buttons">
           <li className="nav-items nav-create-spot">
             <CreateSpotModal />
           </li>
@@ -67,6 +69,7 @@ const Navigation = ({ isLoaded }) => {
               />
             )}
           </li>
+
           {showModal && (
             <Modal onClose={() => setShowModal(false)}>
               {login ? (
