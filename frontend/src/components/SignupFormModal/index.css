@@ -7,7 +7,8 @@
 
 .form-modal-block,
 .form-modal-welcome-block,
-.form-modal-error-block {
+.form-modal-error-block,
+.form-submit-button-block {
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -58,12 +59,14 @@
 }
 
 .form-submit-button-block {
-  padding: 15px;
   background-color: rgb(255, 56, 92);
   border: none;
+  padding: 0;
 }
 
 .form-submit-button {
+  width: 100%;
+  padding: 15px 0;
   border: none;
   outline: none;
   background-color: transparent;

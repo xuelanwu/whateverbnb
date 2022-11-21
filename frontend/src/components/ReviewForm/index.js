@@ -15,6 +15,11 @@ const ReviewForm = ({ setShowModal }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!stars) {
+      const newError = ["Please rate this spot!"];
+      setErrors(newError);
+      return;
+    }
     setErrors([]);
     return dispatch(fetchCreateSpotReview(spotId, { stars, review }))
       .then(() => setShowModal(false))

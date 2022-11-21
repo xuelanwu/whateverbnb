@@ -20,6 +20,11 @@
   font-weight: 600;
 }
 
+.spot-card-image-box {
+  width: 25vw;
+  height: 25vw;
+}
+
 .spot-card-image-box img {
   width: 25vw;
   height: 25vw;
