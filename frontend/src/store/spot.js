@@ -85,7 +85,7 @@ export const fetchDeletespot = (spotId) => async (dispatch) => {
 export const fetchSpotDetail = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}`);
   const data = await response.json();
-  console.log(data);
+
   dispatch(getSpotDetail(data));
   return response;
 };
