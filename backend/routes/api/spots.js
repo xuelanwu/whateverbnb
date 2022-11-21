@@ -22,7 +22,10 @@ const getSpotReview = async (spot) => {
     includes: { model: Review },
     attributes: [
       [Sequelize.fn("COUNT", Sequelize.col("spotId")), "numReviews"],
-      [Sequelize.fn("AVG", Sequelize.col("stars")), "avgRating"],
+      [
+        Sequelize.fn("ROUND", Sequelize.fn("AVG", Sequelize.col("stars")), 2),
+        "avgRating",
+      ],
     ],
   });
   const { numReviews, avgRating } = spotReviews[0].dataValues;

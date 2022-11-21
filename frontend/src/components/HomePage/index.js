@@ -12,14 +12,13 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(fetchAllSpots());
   }, [dispatch]);
-  console.log("HomePage", spots);
-  console.log("HomePage", spotList);
+
   if (spots.spots === null) return;
   return (
     <div className="spot-card-container">
       {spotList.map((spot) => {
         return (
-          <li key={`spotId-${spot.id}`}>
+          <li key={`spotId-${spot.id}`} className="spot-card">
             <SpotCard spot={spot} />
           </li>
         );
