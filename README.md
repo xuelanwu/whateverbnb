@@ -10,7 +10,6 @@
 ### Languages
 
 ![image](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
-
 ![image](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
 ### Frameworks and Libraries
@@ -33,41 +32,51 @@
 ### Home Page
 
 ![home-page]
-[home-page]: assets/home_page.png
+
+[home-page]: /assets/home_page.png
 
 ### Sign Up
 
 ![sign-up]
+
 [sign-up]: assets/signup.png
 
 ### Log In
 
 ![log-in]
+
 [log-in]: assets/login.png
 
 ### CRUD Spots
 
 ![spot-detail-page]
+
 [spot-detail-page]: assets/spot_detail_page.png
 
 ![create-spot]
+
 [create-spot]: assets/create_spot.png
 
 ![edit-spot]
+
 [edit-spot]: assets/edit_spot.png
 
 ![delete-spot]
+
 [delete-spot]: assets/delete_spot.png
 
 ### Create/Read/Delete Reviews
 
 ![create-review]
+
 [create-review]: assets/write_a_review.png
 
 ![read-review]
+
 [read-review]: assets/read-reviews.png
 
 ![delete-review]
+
 [delete-review]: assets/delete_review.png
 
 ###
