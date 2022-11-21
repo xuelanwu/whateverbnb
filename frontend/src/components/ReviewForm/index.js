@@ -98,6 +98,7 @@ const ReviewForm = ({ setShowModal }) => {
       <div className="form-modal-block">
         <textarea
           rows={5}
+          maxlength={255}
           value={review}
           onChange={(e) => setReview(e.target.value)}
           required
