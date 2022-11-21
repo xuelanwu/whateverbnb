@@ -126,7 +126,7 @@ const EditSpotForm = ({ setShowModal, spot }) => {
         <label>Description</label>
         <textarea
           rows={5}
-          maxlength={255}
+          maxLength={255}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required

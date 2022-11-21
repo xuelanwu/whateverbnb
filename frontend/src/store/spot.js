@@ -97,7 +97,7 @@ export const fetchCreateSpotImage = (spotId, img) => async (dispatch) => {
   });
   if (response.ok) {
     const data = await response.json();
-    dispatch(addSpotImage(spotId));
+    dispatch(addSpotImage(spotId, data));
     return data;
   }
   return response;
@@ -130,7 +130,7 @@ const spotReducer = (state = initialState, action) => {
       delete newState[action.id];
       return newState;
     case ADD_SPOT_IMAGE:
-      newState[action.spot.id].previewImage = action.img.url;
+      newState[action.spotId].previewImage = action.img.url;
       return newState;
     default:
       return state;
