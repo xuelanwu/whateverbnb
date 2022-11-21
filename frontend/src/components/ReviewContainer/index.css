@@ -6,6 +6,17 @@
 
 .overall-review-block {
   padding: 30px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-review-button-box button {
+  background-color: rgb(255, 56, 92);
+  color: white;
+  font-size: 1rem;
+  border: 1px solid rgb(255, 56, 92);
+  border-radius: 10px;
+  padding: 5px 10px;
 }
 
 .overall-review-block span,
@@ -44,10 +55,10 @@
 }
 
 .review-delete-box button {
-  background-color: rgba(255, 57, 92, 1);
+  background-color: rgb(255, 56, 92);
   color: white;
   font-size: 1.2rem;
-  border: 1px solid rgba(255, 57, 92, 1);
+  border: 1px solid rgb(255, 56, 92);
   border-radius: 10px;
   padding: 5px 10px;
 }

@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "./index.css";
 
-import ProfileButton from "./ProfileButton";
+import ProfileButton from "../ProfileDropdown";
 import CreateSpotModal from "./CreateSpotModal";
 // import LoginFormModal from "../LoginFormModal";
 // import SignupFormModal from "../SignupFormModal";
@@ -39,18 +39,7 @@ const Navigation = ({ isLoaded }) => {
             </NavLink>
           </li>
         </div>
-        <div className="nav-block-filter">
-          <li className="nav-items search-field">
-            <div className="search-container">
-              <button className="search-button">Anywhere</button>
-              <button className="search-button">Any week</button>
-              <button className="search-button">Add guests</button>
-              <button className="search-icon">
-                <i className="fa-solid fa-magnifying-glass"></i>
-              </button>
-            </div>
-          </li>
-        </div>
+
         <div className="nav-block-buttons nav-buttons">
           <li className="nav-items nav-create-spot">
             <CreateSpotModal />

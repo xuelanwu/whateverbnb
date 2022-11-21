@@ -1,37 +1,53 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { fetchSpotDetail } from "../../store/spot";
+import { fetchSpotReviews } from "../../store/review";
 import "./index.css";
-import EditSpotModal from "./EditSpotModal";
-import DeleteModal from "./DeleteModal";
-import ReviewContainer from "./ReviewContainer";
+import EditSpotModal from "../EditSpotModal";
+import DeleteModal from "../DeleteModal";
+import ReviewContainer from "../ReviewContainer";
 
 const SpotDetailPage = () => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots[spotId]);
   const user = useSelector((state) => state.session.user);
+  const reviews = useSelector((state) => state.reviews);
+  const reviewList = Object.values(reviews);
 
   useEffect(() => {
     dispatch(fetchSpotDetail(spotId));
+    dispatch(fetchSpotReviews(spotId));
   }, [dispatch, spotId]);
 
   if (!spot) return null;
+  if (reviews.reviews === null) return;
+
+  const avgRating = (
+    reviewList.reduce((sum, review) => sum + review.stars, 0) /
+    reviewList.length
+  ).toFixed(2);
 
   return (
     <div className="spot-detail-container">
       <div className="spot-name-block">
         <h1>{spot.name}</h1>
+        {user && user.id === spot.ownerId && (
+          <div className="edit-spot-button-box">
+            <EditSpotModal spot={spot} />
+            <DeleteModal spot={true} spotId={spotId} />
+          </div>
+        )}
       </div>
       <div className="spot-subtitle-block">
         <div className="spot-subtitle-block-left">
           <div className="subtitle-review-box">
-            <i className="fa-solid fa-star"></i>
-            {spot.numReviews ? (
+            <i className="fa-solid fa-star fa-sm"></i>
+            {reviewList.length > 0 ? (
               <span>
-                <span>{`${spot.avgStarRating}`} ·</span>
-                <span>{`${spot.numReviews} reviews`}</span>
+                <span>{`${avgRating}`} · </span>
+                <span>{`${reviewList.length} reviews`}</span>
               </span>
             ) : (
               <span>New</span>
@@ -73,16 +89,14 @@ const SpotDetailPage = () => {
             <img src={spot.SpotImage[0].url} alt={spot.name} />
           ) : null)}
       </div>
-      <div className="edit-spot-button-box">
-        {user && user.id === spot.ownerId && (
-          <div>
-            <EditSpotModal spot={spot} />
-            <DeleteModal spot={true} spotId={spotId} />
-          </div>
-        )}
-      </div>
+
       <div>
-        <ReviewContainer ownerId={spot.ownerId} spot={spot} />
+        <ReviewContainer
+          ownerId={spot.ownerId}
+          spot={spot}
+          reviewList={reviewList}
+          avgRating={avgRating}
+        />
       </div>
     </div>
   );

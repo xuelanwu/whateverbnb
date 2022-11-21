@@ -40,7 +40,7 @@ const SignupForm = ({ setShowModal }) => {
     <form onSubmit={handleSubmit} className="signup-login-form">
       <UserFormTitle setShowModal={setShowModal} />
       <div className="form-modal-welcome-block">
-        <h2>Welcome to Airbnb</h2>
+        <h2>Welcome to WhateverBnb</h2>
       </div>
       <div className="form-modal-error-block">
         <ul>
@@ -107,8 +107,10 @@ const SignupForm = ({ setShowModal }) => {
           required
         />
       </div>
-      <div className="form-modal-block modal-signup-login-button">
-        <button type="submit">Sign Up</button>
+      <div className="form-modal-block form-submit-button-block">
+        <button type="submit" className="form-submit-button">
+          Sign Up
+        </button>
       </div>
     </form>
   );

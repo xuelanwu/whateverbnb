@@ -1,38 +1,26 @@
-import { fetchSpotReviews } from "../../store/review";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-import DeleteModal from "./DeleteModal";
-import CreateReviewModal from "./CreatReviewModal";
-import "./ReviewContainer.css";
+import { useSelector } from "react-redux";
+
+import DeleteModal from "../DeleteModal";
+import CreateReviewModal from "../CreateReviewModal";
+import "./index.css";
 import avatar from "./user.png";
 
-const ReviewContainer = ({ ownerId, spot }) => {
-  const { spotId } = useParams();
-  const dispatch = useDispatch();
-  const reviews = useSelector((state) => state.reviews);
-  const reviewList = Object.values(reviews);
+const ReviewContainer = ({ ownerId, reviewList, avgRating }) => {
   const user = useSelector((state) => state.session.user);
 
-  useEffect(() => {
-    dispatch(fetchSpotReviews(spotId));
-  }, [dispatch, spotId]);
-
-  if (reviews.reviews === null) return;
   return (
     <div className="review-container">
       {reviewList.length > 0 ? (
         <div className="review-block">
           <div className="overall-review-block">
-            {spot.numReviews && (
-              <span>
-                <i className="fa-solid fa-star"></i>
-                <span className="avg-star-span">{spot.avgStarRating} </span>
-                <span>·</span>
-                <span className="num-reviews-span">{`${spot.numReviews} reviews`}</span>
-              </span>
-            )}
-            <div>
+            <span>
+              <i className="fa-solid fa-star"></i>
+              <span className="avg-star-span">{avgRating}</span>
+              <span> · </span>
+              <span className="num-reviews-span">{`${reviewList.length} reviews`}</span>
+            </span>
+
+            <div className="create-review-button-box">
               {user &&
                 user.id !== ownerId &&
                 (reviewList.length < 1 ? (
@@ -45,10 +33,10 @@ const ReviewContainer = ({ ownerId, spot }) => {
             </div>
           </div>
           <div className="review-content-block">
+            {console.log("review container reviewList", reviewList)}
             {reviewList.map((review) => {
               const date = new Date(review.createdAt);
               const formattedDate = date.toDateString().split(" ");
-
               return (
                 <div key={`review-${review.id}`} className="review-box">
                   <div className="review-title-container">
@@ -58,7 +46,14 @@ const ReviewContainer = ({ ownerId, spot }) => {
                       </div>
                       <div className="review-name-block">
                         <div className="review-name-box review-text">
-                          <p>{review.User.firstName}</p>
+                          {console.log(
+                            "review container review in list",
+                            review
+                          )}
+                          <p>
+                            {(review.User && review.User.firstName) ||
+                              user.firstName}
+                          </p>
                         </div>
                         <div className="review-date-box review-text">
                           <p>{`${formattedDate[1]} ${formattedDate[3]}`}</p>
@@ -83,7 +78,7 @@ const ReviewContainer = ({ ownerId, spot }) => {
       ) : (
         <div className="overall-review-block">
           <span className="no-review-span">{`No review (yet)`}</span>
-          <div>
+          <div className="create-review-button-box">
             {user &&
               user.id !== ownerId &&
               (reviewList.length < 1 ? (

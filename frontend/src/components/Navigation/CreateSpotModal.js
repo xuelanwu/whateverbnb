@@ -1,20 +1,22 @@
-import { useState } from "react";
-import { Modal } from "../../context/Modal";
-import CreateSpotForm from "../SpotForm/CreateSpotForm";
+import { useHistory } from "react-router-dom";
 
 const CreateSpotModal = () => {
-  const [showModal, setShowModal] = useState(false);
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push("/spots");
+  };
 
   return (
     <>
-      <button onClick={() => setShowModal(true)} className="create-spot-button">
+      <button onClick={handleClick} className="create-spot-button">
         Airbnb Your Home
       </button>
-      {showModal && (
+      {/* {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <CreateSpotForm setShowModal={setShowModal} />
         </Modal>
-      )}
+      )} */}
     </>
   );
 };

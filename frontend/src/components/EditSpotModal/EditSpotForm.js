@@ -1,13 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { fetchEditSpot } from "../../store/spot";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import "./index.css";
 
 const EditSpotForm = ({ setShowModal, spot }) => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
-  const history = useHistory();
-  const stateSpot = useSelector((state) => state.spots[spotId]);
 
   const [address, setAddress] = useState(spot.address || "");
   const [city, setCity] = useState(spot.city || "");
@@ -41,77 +40,102 @@ const EditSpotForm = ({ setShowModal, spot }) => {
         if (data && data.errors) setErrors(data.errors);
       });
   };
+
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
+  if (!spot) return null;
+
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={`editSpotError-${idx + 1}`}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        Address
+    <form onSubmit={handleSubmit} className="edit-spot-form">
+      <div className="form-modal-title-block">
+        <div className="close-button-box">
+          <button onClick={handleClose}>
+            <i className="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div className="form-modal-title-box">
+          <h3>Edit Spot</h3>
+        </div>
+      </div>
+      <div className="form-modal-error-block">
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={`editSpotError-${idx + 1}`}>{error}</li>
+          ))}
+        </ul>
+      </div>
+      <div className="form-modal-block">
+        <label>Address</label>
         <input
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           required
         />
-      </label>
-      <label>
-        City
+      </div>
+      <div className="form-modal-block">
+        <label>City</label>
         <input
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
           required
         />
-      </label>
-      <label>
-        State
+      </div>
+      <div className="form-modal-block">
+        <label>State</label>
         <input
           type="text"
           value={state}
           onChange={(e) => setState(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Country
+      </div>
+      <div className="form-modal-block">
+        <label>Country</label>
         <input
           type="text"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Name
+      </div>
+      <div className="form-modal-block">
+        <label>Name</label>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Description
+      </div>
+      <div className="form-modal-block">
+        <label>Price</label>
         <input
-          type="textarea"
+          type="number"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          required
+          min="1"
+        />
+      </div>
+
+      <div className="form-modal-block">
+        <label>Description</label>
+        <textarea
+          rows={5}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
         />
-      </label>
-      <label>
-        Price
-        <input
-          type="text"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Submit</button>
+      </div>
+      <div className="form-modal-block form-submit-button-block">
+        <button type="submit" className="form-submit-button">
+          Submit
+        </button>
+      </div>
     </form>
   );
 };

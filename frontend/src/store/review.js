@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { fetchSpotDetail } from "./spot";
 
 const GET_SPOT_REVIEW = "review/getSpotReviews";
 const CREATE_SPOT_REVIEW = "review/createSpotReview";
@@ -26,6 +27,7 @@ export const fetchCreateSpotReview = (spotId, review) => async (dispatch) => {
     body: JSON.stringify(review),
   });
   const data = await response.json();
+  data.stars = parseInt(data.stars);
   dispatch(createSpotReview(data));
   return response;
 };
@@ -35,6 +37,7 @@ export const fetchDeleteSpotReview = (reviewId) => async (dispatch) => {
   });
   const data = await response.json();
   dispatch(deleteSpotReview(reviewId));
+
   return response;
 };
 
@@ -45,7 +48,6 @@ const reviewReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_SPOT_REVIEW:
       newState = {};
-      console.log("reducer reviews", action.reviews);
       action.reviews.forEach((review) => {
         newState[review.id] = review;
       });

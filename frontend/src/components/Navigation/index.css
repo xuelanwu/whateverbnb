@@ -8,7 +8,7 @@ button {
   border: 1px solid #dddddd;
 }
 .nav-bar {
-  width: 90%;
+  width: 80%;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -16,10 +16,6 @@ button {
 }
 .nav-block-logo {
   width: 33%;
-}
-
-.nav-block-filter {
-  width: 50%;
 }
 
 .nav-buttons {
@@ -38,41 +34,7 @@ button {
 }
 
 .fa-wave-square {
-  color: #ff395c;
-}
-.search-container {
-  width: 100%;
-  background-color: white;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 40px;
-}
-
-.search-container:hover {
-  box-shadow: 1px 1px 1px 1px rgba(221, 221, 221, 0.3);
-}
-
-.search-button {
-  font-size: 1rem;
-  outline: none;
-  padding-right: 10px;
-  padding-left: 10px;
-  background-color: transparent;
-  border: 1px solid transparent;
-  border-right: 1px solid #dddddd;
-}
-
-.search-button:nth-of-type(3) {
-  border-right: transparent;
-  color: #717171;
-}
-
-.search-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: #ff395c;
-  border: none;
+  color: rgb(255, 56, 92);
 }
 
 .fa-magnifying-glass {
@@ -137,42 +99,4 @@ button {
 
 .fa-user {
   color: white;
-}
-
-.profile-dropdown-menu-button:hover {
-  box-shadow: 1px 1px 1px 2px rgba(221, 221, 221, 0.5);
-}
-.profile-dropdown li {
-  list-style-type: none;
-  padding: 10px 0;
-  background: white;
-}
-
-.profile-dropdown-button {
-  width: 100%;
-  text-align: left;
-  padding-left: 20px;
-  font-size: 15px;
-  background-color: transparent;
-  outline: none;
-  border: none;
-}
-
-.profile-dropdown-button.signup {
-  font-weight: bolder;
-}
-.profile-dropdown-button.login {
-  font-size: lighter;
-}
-
-.profile-dropdown {
-  border: 1px solid #dddddd;
-  border-radius: 15px;
-  padding: 15px 0;
-  height: 250px;
-  width: 250px;
-  background-color: white;
-  position: absolute;
-  top: 50px;
-  right: 0;
 }

@@ -27,6 +27,19 @@ const LoginForm = ({ setShowModal }) => {
         if (data && data.errors) setErrors(data.errors);
       });
   };
+  const handleClick = (e) => {
+    e.preventDefault();
+    // e.stopPropagation();
+    setErrors([]);
+    return dispatch(login({ credential: "FakeUser1", password: "password1" }))
+      .then(() => {
+        setShowModal(false);
+      })
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
+  };
 
   return (
     <form onSubmit={handleSubmit} className="signup-login-form">
@@ -62,8 +75,15 @@ const LoginForm = ({ setShowModal }) => {
         />
       </div>
 
-      <div className="form-modal-block modal-signup-login-button">
-        <button type="submit">Log In</button>
+      <div className="form-modal-block form-submit-button-block">
+        <button type="submit" className="form-submit-button">
+          Log In
+        </button>
+      </div>
+      <div className="form-modal-block form-submit-button-block">
+        <button className="form-submit-button" onClick={handleClick}>
+          Demo User
+        </button>
       </div>
     </form>
   );

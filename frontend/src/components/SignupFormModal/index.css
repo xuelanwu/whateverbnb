@@ -32,8 +32,7 @@
 }
 
 .form-modal-welcome-block {
-  padding: 10px 0;
-  padding-bottom: 15px;
+  padding-top: 0.5rem;
 }
 .form-modal-welcome-block h2 {
   font-size: 1.5rem;
@@ -53,21 +52,21 @@
 .form-modal-block input {
   border: none;
   outline: none;
-  padding-top: 2px;
-  padding-bottom: 10px;
-  font-size: 1.2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 1rem;
 }
 
-.modal-signup-login-button {
+.form-submit-button-block {
   padding: 15px;
-  background-color: RGB(224, 25, 97);
+  background-color: rgb(255, 56, 92);
   border: none;
 }
 
-.form-modal-block button {
+.form-submit-button {
   border: none;
   outline: none;
   background-color: transparent;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: white;
 }

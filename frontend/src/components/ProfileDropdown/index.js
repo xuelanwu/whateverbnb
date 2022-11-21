@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { logout } from "../../store/session";
+import "./index.css";
 
 const ProfileButton = ({ user, setLogin, setShowModal }) => {
   const dispatch = useDispatch();
@@ -40,10 +41,13 @@ const ProfileButton = ({ user, setLogin, setShowModal }) => {
       </button>
       {showMenu &&
         (user ? (
-          <ul className="profile-dropdown">
+          <ul className="profile-dropdown-menu-container">
+            <li>
+              <h3>{`Hello, ${user.firstName}.`}</h3>
+            </li>
             <li>{user.username}</li>
             <li>{user.email}</li>
-            <li>
+            <li className="profile-dropdown-menu-button-box">
               <button
                 onClick={handleLogout}
                 className="profile-dropdown-button"
@@ -53,8 +57,8 @@ const ProfileButton = ({ user, setLogin, setShowModal }) => {
             </li>
           </ul>
         ) : (
-          <ul className="profile-dropdown">
-            <li>
+          <ul className="profile-dropdown-menu-container">
+            <li className="profile-dropdown-menu-button-box">
               <button
                 className="profile-dropdown-button signup"
                 onClick={() => {
@@ -65,7 +69,7 @@ const ProfileButton = ({ user, setLogin, setShowModal }) => {
                 Sign Up
               </button>
             </li>
-            <li>
+            <li className="profile-dropdown-menu-button-box">
               <button
                 className="profile-dropdown-button login"
                 onClick={() => {

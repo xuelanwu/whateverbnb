@@ -5,7 +5,7 @@ const demoReviews = [
     spotId: 1,
     userId: 4,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Leo urna molestie at elementum. Vitae elementum curabitur vitae nunc sed velit dignissim sodales ut. At in tellus integer feugiat scelerisque. Amet dictum sit amet justo donec.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     stars: 5,
   },
   {
@@ -19,7 +19,7 @@ const demoReviews = [
     spotId: 1,
     userId: 3,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Sed risus ultricies tristique nulla aliquet.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam.",
     stars: 3,
   },
   {

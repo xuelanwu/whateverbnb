@@ -1,13 +1,14 @@
 .spot-card-container {
   padding-top: 3em;
-  width: 90%;
+  width: 80vw;
   margin: auto;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5vw;
 }
 
 .spot-card-container li {
   list-style-type: none;
-  flex: 0 0 32%;
 }
 
 .navlink-spot-card {
@@ -20,8 +21,25 @@
 }
 
 .spot-card-image-box img {
-  width: 100%;
-  height: auto;
-
+  width: 25vw;
+  height: 25vw;
   border-radius: 10px;
+}
+
+.spot-card-text-box {
+  padding: 0.1rem 0;
+}
+
+.spot-card-text-box:nth-of-type(1) {
+  padding-top: 0.5rem;
+}
+
+.spot-card-city-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.spot-card-added-time-box,
+.spot-card-available-box {
+  color: rgb(113, 113, 113);
 }
