@@ -12,6 +12,7 @@ import configureStore from "./store";
 
 import * as sessionActions from "./store/session";
 import * as spotActions from "./store/spot";
+import * as reviewActions from "./store/review";
 
 import ModalProvider from "./context/Modal";
 
@@ -24,6 +25,7 @@ if (process.env.NODE_ENV !== "production") {
   window.store = store;
   window.sessionActions = sessionActions;
   window.spotActions = spotActions;
+  window.reviewActions = reviewActions;
 }
 
 function Root() {

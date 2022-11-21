@@ -83,7 +83,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           len: [3, 256],
-          isEmail: true,
+          isEmail: {
+            msg: "Enter in the format: name@example.com",
+          },
         },
       },
       username: {
@@ -93,7 +95,7 @@ module.exports = (sequelize, DataTypes) => {
           len: [4, 30],
           isNotEmail(value) {
             if (Validator.isEmail(value)) {
-              throw new Error("Cannot be an email.");
+              throw new Error("Username cannot be an email.");
             }
           },
         },
