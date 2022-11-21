@@ -1,7 +1,7 @@
 .review-container {
   border: 1px solid transparent;
-  border-top-color: #dddddd;
-  margin-top: 5em;
+  border-bottom-color: #dddddd;
+  margin-bottom: 2rem;
 }
 
 .overall-review-block {
@@ -21,7 +21,7 @@
 
 .overall-review-block span,
 .no-review-span {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 600;
 }
 
@@ -72,5 +72,12 @@
 }
 
 .review-text {
-  font-size: 1.1rem;
+  font-size: 1rem;
+}
+
+.review-name-box p {
+  font-weight: 600;
+}
+.review-date-box p {
+  color: rgb(113, 113, 113);
 }

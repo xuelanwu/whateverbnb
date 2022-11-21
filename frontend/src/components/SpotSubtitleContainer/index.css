@@ -1,0 +1,21 @@
+.spot-subtitle-container {
+  border: 1px solid transparent;
+  border-bottom-color: #dddddd;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+
+.host-box h3 {
+  font-size: 1.2rem;
+}
+
+.lsting-detail-box {
+  padding-top: 1rem;
+}
+
+.avatar-box img {
+  width: 3rem;
+}

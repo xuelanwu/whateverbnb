@@ -7,6 +7,8 @@ import "./index.css";
 import EditSpotModal from "../EditSpotModal";
 import DeleteModal from "../DeleteModal";
 import ReviewContainer from "../ReviewContainer";
+import SpotDescriptionContainer from "../SpotDescriptionContainer";
+import SpotSubtitleContainer from "../SpotSubtitleContainer";
 
 const SpotDetailPage = () => {
   const { spotId } = useParams();
@@ -89,6 +91,9 @@ const SpotDetailPage = () => {
             <img src={spot.SpotImage[0].url} alt={spot.name} />
           ) : null)}
       </div>
+
+      <SpotSubtitleContainer spot={spot} />
+      <SpotDescriptionContainer spot={spot} />
 
       <div>
         <ReviewContainer

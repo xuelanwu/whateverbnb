@@ -13,7 +13,8 @@ const HomePage = () => {
     dispatch(fetchAllSpots());
   }, [dispatch]);
 
-  if (spots.spots === null) return;
+  console.log(spots);
+  if (!spots.spots) return null;
   return (
     <div className="spot-card-container">
       {spotList.map((spot) => {

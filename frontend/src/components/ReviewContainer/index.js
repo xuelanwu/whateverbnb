@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import DeleteModal from "../DeleteModal";
 import CreateReviewModal from "../CreateReviewModal";
 import "./index.css";
-import avatar from "./user.png";
+import avatar from "../../user.png";
 
 const ReviewContainer = ({ ownerId, reviewList, avgRating }) => {
   const user = useSelector((state) => state.session.user);
@@ -33,7 +33,6 @@ const ReviewContainer = ({ ownerId, reviewList, avgRating }) => {
             </div>
           </div>
           <div className="review-content-block">
-            {console.log("review container reviewList", reviewList)}
             {reviewList.map((review) => {
               const date = new Date(review.createdAt);
               const formattedDate = date.toDateString().split(" ");
@@ -42,14 +41,10 @@ const ReviewContainer = ({ ownerId, reviewList, avgRating }) => {
                   <div className="review-title-container">
                     <div className="review-name-container">
                       <div className="avatar-box">
-                        <img src={avatar} alt="avatar" width="48px" />
+                        <img src={avatar} alt="avatar" width="3rem" />
                       </div>
                       <div className="review-name-block">
                         <div className="review-name-box review-text">
-                          {console.log(
-                            "review container review in list",
-                            review
-                          )}
                           <p>
                             {(review.User && review.User.firstName) ||
                               user.firstName}
