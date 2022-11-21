@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { fetchCreateSpot, fetchCreateSpotImage } from "../../store/spot";
 import { useHistory } from "react-router-dom";
@@ -127,7 +127,7 @@ const CreateSpotPage = () => {
         <div className="form-modal-block">
           <label>Description</label>
           <textarea
-            rows={10}
+            rows={5}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required

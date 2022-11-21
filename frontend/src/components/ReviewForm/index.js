@@ -1,14 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { fetchCreateSpotReview } from "../../store/review";
-import { useHistory, useParams } from "react-router-dom";
-import { fetchSpotReviews } from "../../store/review";
+import { useParams } from "react-router-dom";
+
 import "./index.css";
 
 const ReviewForm = ({ setShowModal }) => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
-  const history = useHistory();
+
   const [stars, setStars] = useState("");
   const [review, setReview] = useState("");
   const [errors, setErrors] = useState([]);

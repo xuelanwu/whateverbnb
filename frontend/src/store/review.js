@@ -1,5 +1,4 @@
 import { csrfFetch } from "./csrf";
-import { fetchSpotDetail } from "./spot";
 
 const GET_SPOT_REVIEW = "review/getSpotReviews";
 const CREATE_SPOT_REVIEW = "review/createSpotReview";
@@ -35,9 +34,8 @@ export const fetchDeleteSpotReview = (reviewId) => async (dispatch) => {
   const response = await csrfFetch(`/api/reviews/${reviewId}`, {
     method: "DELETE",
   });
-  const data = await response.json();
-  dispatch(deleteSpotReview(reviewId));
 
+  dispatch(deleteSpotReview(reviewId));
   return response;
 };
 
