@@ -56,6 +56,7 @@ const SignupForm = ({ setShowModal }) => {
           type="text"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
+          required
         />
       </div>
       <div className="form-modal-block">
@@ -65,6 +66,7 @@ const SignupForm = ({ setShowModal }) => {
           type="text"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
+          required
         />
       </div>
       <div className="form-modal-block">
