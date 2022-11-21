@@ -11,7 +11,7 @@ const demoSpots = [
     lng: -122.4730321,
     name: "App Academy Demo1",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse accumsan vehicula elit nec suscipit. Praesent eget augue turpis. Nam ut molestie justo. Praesent elementum, metus non vulputate mollis, justo augue malesuada quam, non placerat lacus dui nec erat. Vivamus nulla urna, vestibulum a nibh at, hendrerit semper justo. Praesent interdum, quam sed aliquam convallis, massa purus convallis ante, nec congue sapien elit quis massa. Etiam tincidunt libero non nunc volutpat sollicitudin. Duis mollis libero a lacus viverra, et blandit urna euismod. Mauris ut est risus.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse accumsan vehicula elit nec suscipit. Praesent eget augue turpis. Nam ut molestie justo.",
     price: 123,
   },
   {
@@ -24,7 +24,7 @@ const demoSpots = [
     lng: -86.215736,
     name: "App Academy Demo2",
     description:
-      "Pellentesque tincidunt varius ipsum id pretium. Ut vitae nunc vel nunc cursus luctus sed et magna. Donec consectetur leo non nisi gravida, eleifend dictum erat dignissim. Mauris quis elementum augue. Vestibulum ut auctor justo, quis tincidunt nunc. Curabitur diam dolor, scelerisque nec ligula nec, vulputate tempor erat. Nam ac metus lectus. Morbi tristique, eros nec mollis hendrerit, diam tortor interdum quam, a posuere turpis tellus vel leo. Phasellus tristique sit amet sem sed sodales. Donec rutrum aliquet sapien, ut porttitor dui volutpat id.",
+      "Pellentesque tincidunt varius ipsum id pretium. Ut vitae nunc vel nunc cursus luctus sed et magna.",
     price: 234,
   },
   {
@@ -37,7 +37,7 @@ const demoSpots = [
     lng: -80.388603,
     name: "App Academy Demo3",
     description:
-      "Donec purus lacus, consectetur ac elementum sed, gravida ac lorem. Maecenas nisl leo, vestibulum vel velit sit amet, lacinia auctor diam. Vivamus cursus, augue eu condimentum iaculis, sapien tortor cursus lorem, nec egestas tellus leo at sapien. Vestibulum eget odio a dui vulputate lacinia id sagittis elit. Morbi interdum sit amet purus in laoreet. Mauris laoreet dapibus mi vel pellentesque. Morbi aliquam euismod hendrerit. Nam cursus nulla ac elit varius dapibus. Morbi et viverra quam, id suscipit risus. Nulla quis ipsum lobortis, sollicitudin massa in, rhoncus lorem.",
+      "Donec purus lacus, consectetur ac elementum sed, gravida ac lorem. Maecenas nisl leo, vestibulum vel velit sit amet, lacinia auctor diam. Vivamus cursus, augue eu condimentum iaculis.",
     price: 345,
   },
   {
@@ -50,7 +50,7 @@ const demoSpots = [
     lng: -122.259377,
     name: "App Academy Demo4",
     description:
-      "Morbi pharetra a nisl id bibendum. Proin suscipit tellus eu eros pulvinar bibendum. Nullam ut bibendum nunc. Maecenas pretium porttitor sem, pulvinar rhoncus turpis aliquet eu. Curabitur blandit lacus ut lorem malesuada cursus. Aenean sagittis erat ut tempus fermentum. Duis ullamcorper dapibus arcu, nec eleifend sapien bibendum a. Morbi tincidunt magna volutpat, dapibus purus sed, aliquet tortor.",
+      "Morbi pharetra a nisl id bibendum. Proin suscipit tellus eu eros pulvinar bibendum. Nullam ut bibendum nunc. Maecenas pretium porttitor sem, pulvinar rhoncus turpis aliquet eu.",
     price: 213,
   },
   {
@@ -63,7 +63,7 @@ const demoSpots = [
     lng: -83.025322,
     name: "App Academy Demo5",
     description:
-      "Cras porta convallis ultrices. Morbi tempus nibh ac purus feugiat porta. Praesent maximus nisl leo, a interdum turpis luctus et. Maecenas nec est accumsan, dignissim lacus vitae, ullamcorper felis. Maecenas sed nibh ante. Morbi erat nibh, convallis sit amet tortor et, fringilla aliquet orci. Nunc quis molestie nibh.",
+      "Cras porta convallis ultrices. Morbi tempus nibh ac purus feugiat porta. Praesent maximus nisl leo, a interdum turpis luctus et.",
     price: 123,
   },
 ];

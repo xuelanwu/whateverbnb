@@ -15,6 +15,11 @@ const ReviewForm = ({ setShowModal }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!stars) {
+      const newError = ["Please rate this spot!"];
+      setErrors(newError);
+      return;
+    }
     setErrors([]);
     return dispatch(fetchCreateSpotReview(spotId, { stars, review }))
       .then(() => setShowModal(false))
@@ -93,6 +98,7 @@ const ReviewForm = ({ setShowModal }) => {
       <div className="form-modal-block">
         <textarea
           rows={5}
+          maxLength={255}
           value={review}
           onChange={(e) => setReview(e.target.value)}
           required

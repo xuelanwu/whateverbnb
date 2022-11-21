@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import SpotDetailPage from "./components/SpotDetailPage";
 import CreateSpotPage from "./components/CreateSpotPage";
+import PageNotFound from "./components/PageNotFound";
 
 import "./App.css";
 
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path="/spots">
             <CreateSpotPage />
+          </Route>
+          <Route>
+            <PageNotFound />
           </Route>
         </Switch>
       )}

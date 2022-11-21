@@ -52,12 +52,14 @@ const CreateSpotPage = () => {
       <div className="create-spot-form-title-block">
         <h2>WhateverBnb it.</h2>
       </div>
-      <form onSubmit={handleSubmit} className="create-spot-form">
+      <div className="form-modal-error-block">
         <ul>
           {errors.map((error, idx) => (
-            <li key={`signupError-${idx + 1}`}>{error}</li>
+            <li key={`loginError-${idx + 1}`}>{error}</li>
           ))}
         </ul>
+      </div>
+      <form onSubmit={handleSubmit} className="create-spot-form">
         <div className="form-modal-block">
           <label>Address</label>
           <input
@@ -128,6 +130,7 @@ const CreateSpotPage = () => {
           <label>Description</label>
           <textarea
             rows={5}
+            maxLength={255}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required

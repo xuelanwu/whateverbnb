@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import "./index.css";
 
 import ProfileButton from "../ProfileDropdown";
@@ -15,6 +15,7 @@ const Navigation = ({ isLoaded }) => {
   const user = useSelector((state) => state.session.user);
   const [showModal, setShowModal] = useState(false);
   const [login, setLogin] = useState(true);
+  const history = useHistory();
 
   // let sessionLinks;
 
@@ -28,6 +29,10 @@ const Navigation = ({ isLoaded }) => {
   //     </div>
   //   );
   // }
+
+  const handleClick = () => {
+    history.push("/page-not-found");
+  };
 
   return (
     <div className="nav-container">
@@ -45,7 +50,7 @@ const Navigation = ({ isLoaded }) => {
             <CreateSpotModal />
           </li>
           <li className="nav-items globe-icon">
-            <div className="globe-icon-box">
+            <div className="globe-icon-box" onClick={handleClick}>
               <i className="fa-solid fa-globe"></i>
             </div>
           </li>
