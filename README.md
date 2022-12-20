@@ -119,4 +119,4 @@
 
 ## Contact
 
-Xuelan Wu - xuelanwu823@gmail.com
+Xuelan Wu - https://github.com/xuelanwu
