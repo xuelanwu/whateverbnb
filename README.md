@@ -117,6 +117,4 @@
    npm start
    ```
 
-## Contact
 
-Xuelan Wu - https://github.com/xuelanwu
