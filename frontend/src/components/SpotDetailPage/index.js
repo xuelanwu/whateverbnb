@@ -9,6 +9,7 @@ import DeleteModal from "../DeleteModal";
 import ReviewContainer from "../ReviewContainer";
 import SpotDescriptionContainer from "../SpotDescriptionContainer";
 import SpotSubtitleContainer from "../SpotSubtitleContainer";
+import BookingContainer from "../BookingContainer";
 
 const SpotDetailPage = () => {
   const { spotId } = useParams();
@@ -92,16 +93,24 @@ const SpotDetailPage = () => {
           ) : null)}
       </div>
 
-      <SpotSubtitleContainer spot={spot} />
-      <SpotDescriptionContainer spot={spot} />
-
-      <div>
-        <ReviewContainer
-          ownerId={spot.ownerId}
-          spot={spot}
-          reviewList={reviewList}
-          avgRating={avgRating}
-        />
+      <div className="detail-content-container">
+        <div className="detail-content-left">
+          <SpotSubtitleContainer spot={spot} />
+          <SpotDescriptionContainer spot={spot} />
+          <ReviewContainer
+            ownerId={spot.ownerId}
+            spot={spot}
+            reviewList={reviewList}
+            avgRating={avgRating}
+          />
+        </div>
+        <div className="detail-content-right">
+          <BookingContainer
+            spot={spot}
+            avgRating={avgRating}
+            reviewList={reviewList}
+          />
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 .spot-detail-container {
-  width: 80%;
+  width: 90%;
   height: 100%;
   margin: auto;
 }
@@ -68,4 +68,10 @@
   width: 100%;
   object-fit: cover;
   border-radius: 20px;
+}
+
+.detail-content-container {
+  padding-top: 3rem;
+  display: flex;
+  gap: 7.5vw;
 }
