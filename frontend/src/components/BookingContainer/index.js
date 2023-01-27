@@ -24,7 +24,9 @@ const BookingContainer = ({ spot, avgRating, reviewList }) => {
         </div>
       </div>
       <div className="booking-date-block"></div>
-      <div className="booking-button-block"></div>
+      <div className="booking-button-block">
+        <button>Check avaliablity</button>
+      </div>
     </div>
   );
 };

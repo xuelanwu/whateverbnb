@@ -34,3 +34,28 @@
   font-weight: 600;
   text-decoration: underline;
 }
+
+.booking-button-block {
+  width: 100%;
+}
+
+.booking-button-block button {
+  width: 100%;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  padding: 0.875rem 1.5rem;
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+  background: radial-gradient(
+    circle at center,
+    #ff385c 0%,
+    #e61e4d 27.5%,
+    #e31c5f 40%,
+    #d70466 57.5%,
+    #bd1e59 75%,
+    #bd1e59 100%
+  );
+}
