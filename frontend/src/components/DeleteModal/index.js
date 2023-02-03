@@ -5,8 +5,9 @@ import { fetchDeletespot } from "../../store/spot";
 import { useHistory } from "react-router-dom";
 import { fetchDeleteSpotReview } from "../../store/review";
 import "./index.css";
+import { fetchDeleteSpotBooking } from "../../store/booking";
 
-const DeleteModal = ({ spot, spotId, reviewId }) => {
+const DeleteModal = ({ name, spotId, reviewId, bookingId }) => {
   const [showModal, setShowModal] = useState(false);
   // const { spotId } = useParams();
   const dispatch = useDispatch();
@@ -22,10 +23,14 @@ const DeleteModal = ({ spot, spotId, reviewId }) => {
     setErrors([]);
 
     return dispatch(
-      spot ? fetchDeletespot(spotId) : fetchDeleteSpotReview(reviewId)
+      name === "spot"
+        ? fetchDeletespot(spotId)
+        : name === "review"
+        ? fetchDeleteSpotReview(reviewId)
+        : fetchDeleteSpotBooking(bookingId)
     )
       .then(() => setShowModal(false))
-      .then(() => spot && history.push("/"))
+      .then(() => name === "spot" && history.push("/"))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -39,7 +44,7 @@ const DeleteModal = ({ spot, spotId, reviewId }) => {
         <Modal onClose={() => setShowModal(false)}>
           <div className="delete-modal-container">
             <div className="delete-modal-block delete-title">
-              <h2>{reviewId ? "Delete this review?" : "Delete this spot?"}</h2>
+              <h2>{`Delete this ${name}?`}</h2>
             </div>
             <div className="form-modal-error-block">
               <ul>

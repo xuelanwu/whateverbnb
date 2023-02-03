@@ -57,7 +57,7 @@ const ReviewContainer = ({ ownerId, reviewList, avgRating }) => {
                     </div>
                     <div className="review-delete-box">
                       {user && user.id === review.userId && (
-                        <DeleteModal spot={false} reviewId={review.id} />
+                        <DeleteModal name={"review"} reviewId={review.id} />
                       )}
                     </div>
                   </div>

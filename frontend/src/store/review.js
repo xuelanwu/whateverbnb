@@ -39,7 +39,7 @@ export const fetchDeleteSpotReview = (reviewId) => async (dispatch) => {
   return response;
 };
 
-const initialState = { reviews: null };
+const initialState = {};
 
 const reviewReducer = (state = initialState, action) => {
   let newState = { ...state };

@@ -11,6 +11,7 @@ import CreateSpotPage from "./components/CreateSpotPage";
 import PageNotFound from "./components/PageNotFound";
 
 import "./App.css";
+import UserHomePage from "./components/UserHomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path="/spots">
             <CreateSpotPage />
+          </Route>
+          <Route path="/home">
+            <UserHomePage />
           </Route>
           <Route>
             <PageNotFound />

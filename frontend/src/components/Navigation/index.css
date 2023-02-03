@@ -12,7 +12,7 @@ button {
   border: 1px solid #dddddd;
 }
 .nav-bar {
-  width: 80%;
+  width: 90%;
   margin: auto;
   display: flex;
   justify-content: space-between;

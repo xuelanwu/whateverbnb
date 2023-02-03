@@ -17,19 +17,6 @@ const Navigation = ({ isLoaded }) => {
   const [login, setLogin] = useState(true);
   const history = useHistory();
 
-  // let sessionLinks;
-
-  // if (user) {
-  //   sessionLinks = <ProfileButton user={user} />;
-  // } else {
-  //   sessionLinks = (
-  //     <div>
-  //       <LoginFormModal />
-  //       <SignupFormModal />
-  //     </div>
-  //   );
-  // }
-
   const handleClick = () => {
     history.push("/page-not-found");
   };

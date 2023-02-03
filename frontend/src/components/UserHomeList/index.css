@@ -1,0 +1,12 @@
+.list-item-booking.img img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.user-home-list-items {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
