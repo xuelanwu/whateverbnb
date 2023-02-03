@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchSpotDetail } from "../../store/spot";
 import { fetchSpotReviews } from "../../store/review";
+import { fetchSpotBookings } from "../../store/booking";
 import "./index.css";
 import EditSpotModal from "../EditSpotModal";
 import DeleteModal from "../DeleteModal";
@@ -18,14 +19,18 @@ const SpotDetailPage = () => {
   const user = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews);
   const reviewList = Object.values(reviews);
+  const bookings = useSelector((state) => state.bookings);
+  const bookingList = Object.values(bookings);
 
   useEffect(() => {
     dispatch(fetchSpotDetail(spotId));
     dispatch(fetchSpotReviews(spotId));
+    dispatch(fetchSpotBookings(spotId));
   }, [dispatch, spotId]);
 
   if (!spot) return null;
-  if (reviews.reviews === null) return;
+  if (!reviews) return;
+  if (!bookings) return;
 
   const avgRating = (
     reviewList.reduce((sum, review) => sum + review.stars, 0) /
@@ -109,6 +114,7 @@ const SpotDetailPage = () => {
             spot={spot}
             avgRating={avgRating}
             reviewList={reviewList}
+            bookingList={bookingList}
           />
         </div>
       </div>
