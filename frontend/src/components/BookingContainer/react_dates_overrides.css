@@ -68,3 +68,12 @@
   background-color: black;
   color: white;
 }
+
+.CalendarDay__blocked_calendar,
+.CalendarDay__blocked_calendar:active,
+.CalendarDay__blocked_calendar:hover {
+  background: transparent;
+  border: none;
+  color: #82888a;
+  text-decoration: line-through;
+}

@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
+const SET_USER_BOOKINGS = "session/setUserBookings";
 
 const setUser = (user) => {
   return { type: SET_USER, user };
@@ -9,6 +10,10 @@ const setUser = (user) => {
 
 const removeUser = () => {
   return { type: REMOVE_USER };
+};
+
+const setUserBookings = (bookings) => {
+  return { type: SET_USER_BOOKINGS, bookings };
 };
 
 export const login = (user) => async (dispatch) => {
@@ -49,7 +54,15 @@ export const logout = () => async (dispatch) => {
   return response;
 };
 
-const initialState = { user: null };
+export const fetchUserBookings = () => async (dispatch) => {
+  const response = await csrfFetch("/api/bookings/current");
+  const data = await response.json();
+
+  dispatch(setUserBookings(data.Bookings));
+  return response;
+};
+
+const initialState = { user: null, bookings: null };
 
 const sessionReducer = (state = initialState, action) => {
   let newState;
@@ -60,6 +73,14 @@ const sessionReducer = (state = initialState, action) => {
       return newState;
     case REMOVE_USER:
       return initialState;
+    case SET_USER_BOOKINGS:
+      newState = { ...state };
+      let newBookings = {};
+      action.bookings.forEach((booking) => {
+        newBookings[booking.id] = booking;
+      });
+      newState.bookings = { ...newBookings };
+      return newState;
     default:
       return state;
   }

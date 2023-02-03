@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { fetchUserBookings } from "./session";
 
 const GET_SPOT_BOOKING = "booking/getSpotBookings";
 const CREATE_SPOT_BOOKING = "booking/createSpotBooking";
@@ -36,6 +37,7 @@ export const fetchDeleteSpotBooking = (bookingId) => async (dispatch) => {
   });
 
   dispatch(deleteSpotBooking(bookingId));
+  dispatch(fetchUserBookings());
   return response;
 };
 
