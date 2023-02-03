@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-const BookingContainer = ({ spot }) => {
-  console.log("********** spot", spot);
-  return <div className="booking-container"></div>;
-=======
 import "react-dates/initialize";
 import {
   DateRangePicker,
@@ -119,7 +114,6 @@ const BookingContainer = ({ spot, avgRating, reviewList, bookingList }) => {
       </div>
     </div>
   );
->>>>>>> dev
 };
 
 export default BookingContainer;
