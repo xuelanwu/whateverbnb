@@ -7,22 +7,25 @@ import "./index.css";
 const HomePage = () => {
   const dispatch = useDispatch();
   const spots = useSelector((state) => state.spots);
-  const spotList = Object.values(spots);
 
   useEffect(() => {
     dispatch(fetchAllSpots());
   }, [dispatch]);
 
-  if (spots.spots === null) return;
+  console.log("************* home spots", spots);
+  console.log("************* home condition", typeof spots);
+  // if (!spots.spots) return null;
   return (
     <div className="spot-card-container">
-      {spotList.map((spot) => {
-        return (
-          <li key={`spotId-${spot.id}`} className="spot-card">
-            <SpotCard spot={spot} />
-          </li>
-        );
-      })}
+      {spots &&
+        Object.values(spots).map((spot) => {
+          if (spot)
+            return (
+              <li key={`spotId-${spot.id}`} className="spot-card">
+                <SpotCard spot={spot} />
+              </li>
+            );
+        })}
     </div>
   );
 };
