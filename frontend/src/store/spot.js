@@ -32,6 +32,17 @@ export const fetchAllSpots = () => async (dispatch) => {
   dispatch(getAllSpots(data.Spots));
   return response;
 };
+
+export const fetchFilteredSpots =
+  ({ minPrice, maxPrice }) =>
+  async (dispatch) => {
+    const searchParams = new URLSearchParams({ minPrice, maxPrice });
+    const response = await csrfFetch(`/api/spots?${searchParams.toString()}`);
+    const data = await response.json();
+    if (Array.isArray(data.Spots)) dispatch(getAllSpots(data.Spots));
+    else return response;
+  };
+
 export const fetchCreateSpot = (spot) => async (dispatch) => {
   const response = await csrfFetch("/api/spots", {
     method: "POST",
