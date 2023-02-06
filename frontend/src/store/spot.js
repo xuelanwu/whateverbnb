@@ -39,8 +39,8 @@ export const fetchFilteredSpots =
     const searchParams = new URLSearchParams({ minPrice, maxPrice });
     const response = await csrfFetch(`/api/spots?${searchParams.toString()}`);
     const data = await response.json();
-    if (Array.isArray(data.Spots)) dispatch(getAllSpots(data.Spots));
-    else return response;
+    dispatch(getAllSpots(data.Spots));
+    return response;
   };
 
 export const fetchCreateSpot = (spot) => async (dispatch) => {
@@ -121,10 +121,12 @@ const spotReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_SPOTS:
       newState = {};
-      action.spots.forEach((spot) => {
-        newState[spot.id] = spot;
-      });
-      return newState;
+      if (Array.isArray(action.spots)) {
+        action.spots.forEach((spot) => {
+          newState[spot.id] = spot;
+        });
+        return newState;
+      } else return null;
     case GET_SPOT_DETAIL:
       newState[action.spot.id] = action.spot;
       return newState;

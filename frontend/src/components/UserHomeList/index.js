@@ -9,10 +9,6 @@ import "./index.css";
 
 const UserHomeList = ({ name, items }) => {
   const dispatch = useDispatch();
-  console.log(items);
-  const handleCancel = () => {
-    dispatch(fetchDeleteSpotBooking());
-  };
 
   return (
     <div className="user-home-list-container">

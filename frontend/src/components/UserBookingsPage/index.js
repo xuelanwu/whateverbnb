@@ -17,7 +17,6 @@ const UserBookingsPage = () => {
     dispatch(fetchUserBookings());
   }, [dispatch]);
 
-  console.log(bookings);
   if (!user) return null;
   return (
     <div className="user-home-container">
