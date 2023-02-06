@@ -48,3 +48,7 @@
 .spot-card-available-box {
   color: rgb(113, 113, 113);
 }
+
+.no-matches-container h3 {
+  margin-bottom: 2rem;
+}

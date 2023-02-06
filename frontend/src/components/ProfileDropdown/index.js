@@ -1,10 +1,14 @@
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import { logout } from "../../store/session";
 import "./index.css";
 
 const ProfileButton = ({ user, setLogin, setShowModal }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
+  const path = location.pathname;
   const [showMenu, setShowMenu] = useState(false);
 
   const openMenu = () => {
@@ -26,7 +30,12 @@ const ProfileButton = ({ user, setLogin, setShowModal }) => {
 
   const handleLogout = (e) => {
     e.preventDefault();
-    dispatch(logout());
+    dispatch(logout()).then(() => history.push("/"));
+  };
+
+  const handleBookings = (e) => {
+    e.preventDefault();
+    history.push("/home");
   };
 
   return (
@@ -45,8 +54,19 @@ const ProfileButton = ({ user, setLogin, setShowModal }) => {
             <li>
               <h3>{`Hello, ${user.firstName}.`}</h3>
             </li>
-            <li>{user.username}</li>
             <li>{user.email}</li>
+            <li
+              className={`profile-dropdown-menu-button-box ${
+                path === "/user/bookings" && "user-home-dropdown-button-box"
+              }`}
+            >
+              <button
+                onClick={handleBookings}
+                className={`profile-dropdown-button`}
+              >
+                My Bookings
+              </button>
+            </li>
             <li className="profile-dropdown-menu-button-box">
               <button
                 onClick={handleLogout}

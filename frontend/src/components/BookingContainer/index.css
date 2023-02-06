@@ -1,8 +1,8 @@
 .booking-container {
   width: 30vw;
+  padding: 1.5rem;
   border: 1px solid rgb(221, 221, 221);
   border-radius: 0.75rem;
-  padding: 1.5rem;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
 

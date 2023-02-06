@@ -1,5 +1,6 @@
 .nav-block-filter {
   width: 50%;
+  position: relative;
 }
 
 .search-container {
@@ -35,4 +36,73 @@
   border-radius: 50%;
   background-color: rgb(255, 56, 92);
   border: none;
+}
+
+.filter-form {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 120%;
+  padding: 1rem 0.5rem;
+  background-color: white;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 0.75rem;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+
+.filter-form-block {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.filter-price-box {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin: auto;
+  border-radius: 0.5rem;
+  box-shadow: inset 0 0 0 1px #b0b0b0;
+  padding: 0.5rem;
+}
+
+.filter-price-box label {
+  color: rgb(113, 113, 113);
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.filter-price-box input {
+  width: 100%;
+  outline: none;
+  border: none;
+  padding-left: 0.5rem;
+}
+
+.filter-price-input-box {
+  display: flex;
+}
+
+.filter-error {
+  list-style: none;
+  padding-left: 0.5rem;
+  color: red;
+}
+
+.spot-filter-search-button {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  background: radial-gradient(
+    circle at center,
+    #ff385c 0%,
+    #e61e4d 27.5%,
+    #e31c5f 40%,
+    #d70466 57.5%,
+    #bd1e59 75%,
+    #bd1e59 100%
+  );
+  color: white;
 }

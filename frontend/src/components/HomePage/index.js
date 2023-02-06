@@ -12,12 +12,10 @@ const HomePage = () => {
     dispatch(fetchAllSpots());
   }, [dispatch]);
 
-  console.log("************* home spots", spots);
-  console.log("************* home condition", typeof spots);
   // if (!spots.spots) return null;
   return (
     <div className="spot-card-container">
-      {spots &&
+      {spots ? (
         Object.values(spots).map((spot) => {
           if (spot)
             return (
@@ -25,7 +23,16 @@ const HomePage = () => {
                 <SpotCard spot={spot} />
               </li>
             );
-        })}
+        })
+      ) : (
+        <div className="no-matches-container">
+          <h3>No exact matches</h3>
+          <p>
+            Try changing or removing some of your filters or adjusting your
+            search area.
+          </p>
+        </div>
+      )}
     </div>
   );
 };

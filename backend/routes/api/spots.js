@@ -65,6 +65,7 @@ const handleAllSpotsReponse = async (spots) => {
 //Get all spots
 router.get("/", async (req, res, next) => {
   let query = {};
+  let where = {};
   let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } =
     req.query;
 
@@ -86,7 +87,7 @@ router.get("/", async (req, res, next) => {
       const err = new Error("Minimum latitude is invalid");
       return next(err);
     }
-    if (minLat) query.where.lat = { [Op.gte]: minLat };
+    if (minLat) where.lat = { [Op.gte]: minLat };
   }
 
   if (maxLat) {
@@ -95,7 +96,7 @@ router.get("/", async (req, res, next) => {
       const err = new Error("Maximum latitude is invalid");
       return next(err);
     }
-    if (maxLat) query.where.lat = { [Op.lte]: maxLat };
+    if (maxLat) where.lat = { [Op.lte]: maxLat };
   }
   if (minLng) {
     minLng = parseFloat(minLng);
@@ -103,7 +104,7 @@ router.get("/", async (req, res, next) => {
       const err = new Error("Minimum longitude is invalid");
       return next(err);
     }
-    if (minLng) query.where.lng = { [Op.gte]: minLng };
+    if (minLng) where.lng = { [Op.gte]: minLng };
   }
   if (maxLng) {
     maxLng = parseFloat(maxLng);
@@ -111,7 +112,7 @@ router.get("/", async (req, res, next) => {
       const err = new Error("Maximum longitude is invalid");
       return next(err);
     }
-    if (maxLng) query.where.lng = { [Op.lte]: maxLng };
+    if (maxLng) where.lng = { [Op.lte]: maxLng };
   }
 
   if (minPrice) minPrice = parseFloat(minPrice);
@@ -122,11 +123,11 @@ router.get("/", async (req, res, next) => {
     );
     return next(err);
   } else {
-    if (minPrice) query.where.price = { [Op.gte]: minPrice };
-    if (maxPrice) query.where.price = { [Op.lte]: maxPrice };
+    if (minPrice) where.price = { [Op.gte]: minPrice };
+    if (maxPrice) where.price = { [Op.lte]: maxPrice };
   }
 
-  const spots = await Spot.findAll(query);
+  const spots = await Spot.findAll({ where, ...query });
   if (spots.length > 0) {
     const result = await handleAllSpotsReponse(spots);
     return res.json({ Spots: result, page, size });
