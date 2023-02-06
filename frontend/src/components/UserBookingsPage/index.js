@@ -5,7 +5,7 @@ import UserHomeList from "../UserHomeList";
 
 import "./index.css";
 
-const UserHomePage = () => {
+const UserBookingsPage = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   //   const reviews = useSelector((state) => state.reviews);
@@ -29,4 +29,4 @@ const UserHomePage = () => {
   );
 };
 
-export default UserHomePage;
+export default UserBookingsPage;

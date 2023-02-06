@@ -12,6 +12,15 @@
   background-color: rgba(221, 221, 221, 0.5);
 }
 
+.user-home-dropdown-button-box:hover {
+  background-color: transparent;
+}
+
+.user-home-dropdown-button-box button {
+  font-weight: 600;
+  cursor: not-allowed;
+}
+
 .profile-dropdown-button {
   width: 100%;
   text-align: left;

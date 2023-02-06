@@ -25,15 +25,17 @@ const UserHomeList = ({ name, items }) => {
                 className="user-home-list-items"
                 key={`booking-${booking.id}`}
               >
-                <div className="list-item-booking img">
-                  <img src={booking.Spot.previewImage}></img>
-                </div>
-                <div className="list-item-booking dates">
-                  <p className="user-booking-date">{`Check-In: ${booking.startDate}`}</p>
-                  <p className="user-booking-date">{`Checkout: ${booking.endDate}`}</p>
-                </div>
-                <div className="list-item-booking button">
-                  <DeleteModal name={"booking"} bookingId={booking.id} />
+                <div className="user-home-list-items-inner">
+                  <div className="list-item-booking img">
+                    <img src={booking.Spot.previewImage}></img>
+                  </div>
+                  <div className="list-item-booking dates">
+                    <p className="user-booking-date">{`Check-In: ${booking.startDate}`}</p>
+                    <p className="user-booking-date">{`Checkout: ${booking.endDate}`}</p>
+                  </div>
+                  <div className="list-item-booking button">
+                    <DeleteModal name={"booking"} bookingId={booking.id} />
+                  </div>
                 </div>
               </li>
             ))}

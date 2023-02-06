@@ -9,9 +9,9 @@ import HomePage from "./components/HomePage";
 import SpotDetailPage from "./components/SpotDetailPage";
 import CreateSpotPage from "./components/CreateSpotPage";
 import PageNotFound from "./components/PageNotFound";
+import UserBookingsPage from "./components/UserBookingsPage";
 
 import "./App.css";
-import UserHomePage from "./components/UserHomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,8 +35,8 @@ function App() {
           <Route path="/spots">
             <CreateSpotPage />
           </Route>
-          <Route path="/home">
-            <UserHomePage />
+          <Route path="/user/bookings">
+            <UserBookingsPage />
           </Route>
           <Route>
             <PageNotFound />
