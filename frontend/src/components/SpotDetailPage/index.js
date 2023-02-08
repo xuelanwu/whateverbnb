@@ -115,6 +115,7 @@ const SpotDetailPage = () => {
             avgRating={avgRating}
             reviewList={reviewList}
             bookingList={bookingList}
+            user={user}
           />
         </div>
       </div>

@@ -59,3 +59,7 @@
     #bd1e59 100%
   );
 }
+
+.booking-button-block button:disabled {
+  cursor: not-allowed;
+}

@@ -17,7 +17,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCreateSpotBooking } from "../../store/booking";
 import { useHistory } from "react-router-dom";
 
-const BookingContainer = ({ spot, avgRating, reviewList, bookingList }) => {
+const BookingContainer = ({
+  user,
+  spot,
+  avgRating,
+  reviewList,
+  bookingList,
+}) => {
   const moment = extendMoment(Moment);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -30,7 +36,7 @@ const BookingContainer = ({ spot, avgRating, reviewList, bookingList }) => {
     const start = startDate.format("YYYY-MM-DD");
     const end = endDate.format("YYYY-MM-DD");
     return dispatch(fetchCreateSpotBooking(spot.id, start, end)).then(() =>
-      history.push("/home")
+      history.push("/user/bookings")
     );
   };
 
@@ -105,10 +111,22 @@ const BookingContainer = ({ spot, avgRating, reviewList, bookingList }) => {
           isDayBlocked={isBlocked}
         />
       </div>
+      {user && spot.ownerId === user.id ? (
+        <div className="booking-button-block">
+          <button onClick={handleBook} disabled>
+            Check avaliablity
+          </button>
+        </div>
+      ) : user ? (
+        <div className="booking-button-block">
+          <button onClick={handleBook}>Check avaliablity</button>
+        </div>
+      ) : (
+        <div className="booking-button-block" disabled>
+          <button onClick={handleBook}>Login First</button>
+        </div>
+      )}
 
-      <div className="booking-button-block">
-        <button onClick={handleBook}>Check avaliablity</button>
-      </div>
       <div className="booking-sum-block">
         {startDate && endDate && <div className="booking-nights-box"></div>}
       </div>

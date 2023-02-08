@@ -35,7 +35,7 @@ const ProfileButton = ({ user, setLogin, setShowModal }) => {
 
   const handleBookings = (e) => {
     e.preventDefault();
-    history.push("/home");
+    history.push("/user/bookings");
   };
 
   return (
