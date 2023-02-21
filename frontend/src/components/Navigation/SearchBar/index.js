@@ -27,12 +27,14 @@ const SearchBar = () => {
 
     const closeMenu = (e) => {
       const name = e.target.name;
+      const value = e.target.value;
       if (
         name !== "minPrice" &&
         name !== "maxPrice" &&
         name !== "city" &&
         name !== "state" &&
-        name !== "country"
+        name !== "country" &&
+        value !== "search"
       )
         setShowMenu(false);
     };
@@ -44,23 +46,37 @@ const SearchBar = () => {
 
   const handleMinPrice = (e) => {
     const price = e.target.value;
-    setMinPrice(price);
-    if (price && isNaN(price)) setErrors(["Must be a number"]);
-    else setErrors([]);
+    setMinPrice(() => price);
+    if (price) {
+      if (isNaN(price)) setErrors(["Must be a number"]);
+      else if (price < 1) {
+        setErrors(["minPrice must be greater than or equal to 1"]);
+      }
+    } else setErrors([]);
   };
 
   const handleMaxPrice = (e) => {
     const price = e.target.value;
     setMaxPrice(price);
-    if (price && isNaN(price)) setErrors(["Must be a number"]);
-    else setErrors([]);
+    if (price) {
+      if (isNaN(price)) setErrors(["Must be a number"]);
+      else if (price < 1) {
+        setErrors(["maxPrice must be greater than or equal to 1"]);
+      }
+    } else setErrors([]);
   };
 
   const handleSearch = (e) => {
+    e.preventDefault();
+    if (minPrice && maxPrice) {
+      if (parseInt(minPrice) > parseInt(maxPrice)) {
+        return setErrors(["minPrince cannot be greater than maxPrice"]);
+      }
+    }
     if (errors.length > 0) return;
     return dispatch(
       fetchFilteredSpots({ minPrice, maxPrice, city, state, country })
-    );
+    ).then(() => setShowMenu(false));
   };
 
   return (
@@ -98,6 +114,7 @@ const SearchBar = () => {
                   name="city"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
+                  maxLength={25}
                 />
               </div>
             </div>
@@ -110,6 +127,7 @@ const SearchBar = () => {
                   name="state"
                   value={state}
                   onChange={(e) => setState(e.target.value)}
+                  maxLength={25}
                 />
               </div>
             </div>
@@ -122,6 +140,7 @@ const SearchBar = () => {
                   name="country"
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
+                  maxLength={25}
                 />
               </div>
             </div>
@@ -135,6 +154,7 @@ const SearchBar = () => {
                   name="minPrice"
                   value={minPrice}
                   onChange={handleMinPrice}
+                  maxLength={5}
                 />
               </div>
             </div>
@@ -147,14 +167,16 @@ const SearchBar = () => {
                   name="maxPrice"
                   value={maxPrice}
                   onChange={handleMaxPrice}
+                  maxLength={5}
                 />
               </div>
             </div>
           </div>
-          <div className="filter-form-block">
+          <div className="filter-form-block filter-search-button-div">
             <button
               type="submit"
               onClick={handleSearch}
+              value="search"
               className="spot-filter-search-button"
             >
               Search
