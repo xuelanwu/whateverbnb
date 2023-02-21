@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 import "./index.css";
 
@@ -11,25 +11,28 @@ import { Modal } from "../../context/Modal";
 import LoginForm from "../LoginFormModal/LoginForm";
 import SignupForm from "../SignupFormModal/SignupForm";
 import SearchBar from "./SearchBar";
+import { fetchAllSpots } from "../../store/spot";
 
 const Navigation = ({ isLoaded }) => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const [showModal, setShowModal] = useState(false);
   const [login, setLogin] = useState(true);
-  const history = useHistory();
   const location = useLocation();
   const path = location.pathname;
-
-  // const handleClick = () => {
-  //   history.push("/page-not-found");
-  // };
 
   return (
     <div className="nav-container">
       <ul className="nav-bar">
         <div className="nav-block-logo">
           <li className="nav-items logo">
-            <NavLink exact to="/">
+            <NavLink
+              exact
+              to="/"
+              onClick={() => {
+                if (window.location.pathname === "/") dispatch(fetchAllSpots());
+              }}
+            >
               <i className="fa-solid fa-wave-square fa-2xl"></i>
             </NavLink>
           </li>

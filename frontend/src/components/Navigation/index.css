@@ -9,7 +9,11 @@ button {
 .nav-container {
   width: 100%;
   padding: 20px 0;
-  border: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  height: 6rem;
 }
 .nav-bar {
   width: 90%;

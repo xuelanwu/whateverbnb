@@ -5,6 +5,7 @@
   flex-wrap: wrap;
   gap: 3vw;
   padding: 3rem 0;
+  flex: 1;
 }
 
 .spot-card-container li {

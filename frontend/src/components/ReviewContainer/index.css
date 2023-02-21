@@ -1,6 +1,4 @@
 .review-container {
-  border: 1px solid transparent;
-  border-bottom-color: #dddddd;
   margin-bottom: 2rem;
 }
 
@@ -32,11 +30,12 @@
 
 .review-content-block {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
 .review-box {
-  width: 50%;
+  width: 48%;
   padding-bottom: 40px;
 }
 
