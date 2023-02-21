@@ -9,9 +9,9 @@ const demoSpots = [
     country: "USA",
     lat: 37.7645351,
     lng: -122.4730321,
-    name: "App Academy Demo1",
+    name: "Serenity Cottage",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse accumsan vehicula elit nec suscipit. Praesent eget augue turpis. Nam ut molestie justo.",
+      "Welcome to our charming 2b1b house, perfect for your next vacation! Located in a quiet and peaceful neighborhood, our house offers a relaxing escape from the hustle and bustle of city life.",
     price: 123,
   },
   {
@@ -22,9 +22,9 @@ const demoSpots = [
     country: "USA",
     lat: 41.780071,
     lng: -86.215736,
-    name: "App Academy Demo2",
+    name: "The Garden Retreat",
     description:
-      "Pellentesque tincidunt varius ipsum id pretium. Ut vitae nunc vel nunc cursus luctus sed et magna.",
+      "As you enter, you'll immediately notice the warm and inviting atmosphere of the living room, which features comfortable seating, a flat-screen TV, and large windows that let in plenty of natural light. Adjacent to the living room is the fully equipped kitchen, which comes with all the appliances and utensils you need to prepare your own meals.",
     price: 234,
   },
   {
@@ -35,9 +35,9 @@ const demoSpots = [
     country: "USA",
     lat: 39.206917,
     lng: -80.388603,
-    name: "App Academy Demo3",
+    name: "Coastal Escape",
     description:
-      "Donec purus lacus, consectetur ac elementum sed, gravida ac lorem. Maecenas nisl leo, vestibulum vel velit sit amet, lacinia auctor diam. Vivamus cursus, augue eu condimentum iaculis.",
+      "The house has two cozy bedrooms, both of which are furnished with comfortable beds, fresh linens, and plenty of closet space. The bathroom is modern and clean, and comes with a full bath and shower.",
     price: 345,
   },
   {
@@ -48,9 +48,9 @@ const demoSpots = [
     country: "USA",
     lat: 37.908894,
     lng: -122.259377,
-    name: "App Academy Demo4",
+    name: "City Lights Oasis",
     description:
-      "Morbi pharetra a nisl id bibendum. Proin suscipit tellus eu eros pulvinar bibendum. Nullam ut bibendum nunc. Maecenas pretium porttitor sem, pulvinar rhoncus turpis aliquet eu.",
+      "Our house is conveniently located near many local attractions, including parks, museums, and restaurants. We provide a detailed guidebook to help you plan your stay and make the most of your visit.",
     price: 213,
   },
   {
@@ -61,9 +61,9 @@ const demoSpots = [
     country: "USA",
     lat: 31.33453,
     lng: -83.025322,
-    name: "App Academy Demo5",
+    name: "Rustic Charm Cabin",
     description:
-      "Cras porta convallis ultrices. Morbi tempus nibh ac purus feugiat porta. Praesent maximus nisl leo, a interdum turpis luctus et.",
+      "Whether you're here for a weekend getaway or an extended stay, our 2b1b house is the perfect home away from home. We look forward to hosting you!",
     price: 123,
   },
 ];

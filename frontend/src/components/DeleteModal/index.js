@@ -46,13 +46,17 @@ const DeleteModal = ({ name, spotId, reviewId, bookingId }) => {
             <div className="delete-modal-block delete-title">
               <h2>{`Delete this ${name}?`}</h2>
             </div>
-            <div className="form-modal-error-block">
-              <ul>
-                {errors.map((error, idx) => (
-                  <li key={`loginError-${idx + 1}`}>{error}</li>
-                ))}
-              </ul>
-            </div>
+
+            {errors && (
+              <div className="form-modal-error-block">
+                <ul>
+                  {errors.map((error, idx) => (
+                    <li key={`loginError-${idx + 1}`}>{error}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <div>
               <div className="delete-modal-block delete-modal-button-block">
                 <button

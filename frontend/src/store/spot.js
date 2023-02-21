@@ -34,9 +34,15 @@ export const fetchAllSpots = () => async (dispatch) => {
 };
 
 export const fetchFilteredSpots =
-  ({ minPrice, maxPrice }) =>
+  ({ minPrice, maxPrice, city, state, country }) =>
   async (dispatch) => {
-    const searchParams = new URLSearchParams({ minPrice, maxPrice });
+    const searchParams = new URLSearchParams({
+      minPrice,
+      maxPrice,
+      city,
+      state,
+      country,
+    });
     const response = await csrfFetch(`/api/spots?${searchParams.toString()}`);
     const data = await response.json();
     dispatch(getAllSpots(data.Spots));
