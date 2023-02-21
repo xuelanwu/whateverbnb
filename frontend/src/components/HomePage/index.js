@@ -12,6 +12,11 @@ const HomePage = () => {
     dispatch(fetchAllSpots());
   }, [dispatch]);
 
+  const handleClearFilter = (e) => {
+    e.preventDefault();
+    dispatch(fetchAllSpots());
+  };
+
   // if (!spots.spots) return null;
   return (
     <div className="spot-card-container">
@@ -26,7 +31,15 @@ const HomePage = () => {
         })
       ) : (
         <div className="no-matches-container">
-          <h3>No exact matches</h3>
+          <div className="no-matches-title-block">
+            <h3>No exact matches</h3>
+            <button
+              className="no-matches-filter-clear-button"
+              onClick={handleClearFilter}
+            >
+              Clear filter
+            </button>
+          </div>
           <p>
             Try changing or removing some of your filters or adjusting your
             search area.
