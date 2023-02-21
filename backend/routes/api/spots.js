@@ -80,9 +80,30 @@ router.get("/", async (req, res, next) => {
     country,
   } = req.query;
 
-  if (city) where.city = { [Op.substring]: city };
-  if (state) where.state = { [Op.substring]: state };
-  if (country) where.country = { [Op.substring]: country };
+  if (city) {
+    const lowerCity = city.toLowerCase();
+    where.city = Sequelize.where(
+      Sequelize.fn("LOWER", Sequelize.col("city")),
+      "LIKE",
+      "%" + lowerCity + "%"
+    );
+  }
+  if (state) {
+    const lowerState = state.toLowerCase();
+    where.state = Sequelize.where(
+      Sequelize.fn("LOWER", Sequelize.col("state")),
+      "LIKE",
+      "%" + lowerState + "%"
+    );
+  }
+  if (country) {
+    const lowerCountry = country.toLowerCase();
+    where.country = Sequelize.where(
+      Sequelize.fn("LOWER", Sequelize.col("country")),
+      "LIKE",
+      "%" + lowerCountry + "%"
+    );
+  }
 
   if (page) page = parseInt(page);
   if (size) size = parseInt(size);
