@@ -12,7 +12,7 @@ const demoReviews = [
     spotId: 1,
     userId: 2,
     review:
-      "The cottage itself was cozy and well-equipped with everything we needed for a comfortable stay.",
+      "The cottage itself was cozy and well-equipped with everything we needed for a comfortable stay. We especially loved the fireplace, which added to the rustic charm of the place.",
     stars: 4,
   },
   {

@@ -24,7 +24,7 @@ const demoSpots = [
     lng: -86.215736,
     name: "The Garden Retreat",
     description:
-      "As you enter, you'll immediately notice the warm and inviting atmosphere of the living room, which features comfortable seating, a flat-screen TV, and large windows that let in plenty of natural light. Adjacent to the living room is the fully equipped kitchen, which comes with all the appliances and utensils you need to prepare your own meals.",
+      "As you enter, you'll immediately notice the warm and inviting atmosphere of the living room, which features comfortable seating, a flat-screen TV, and large windows that let in plenty of natural light.",
     price: 234,
   },
   {
