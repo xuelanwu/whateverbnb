@@ -10,6 +10,7 @@ import SpotDetailPage from "./components/SpotDetailPage";
 import CreateSpotPage from "./components/CreateSpotPage";
 import PageNotFound from "./components/PageNotFound";
 import UserBookingsPage from "./components/UserBookingsPage";
+import Footer from "./components/Footer";
 
 import "./App.css";
 
@@ -43,6 +44,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </div>
   );
 }

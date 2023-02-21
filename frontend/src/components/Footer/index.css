@@ -1,0 +1,23 @@
+.footer-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  border: 1px solid #dddddd;
+}
+
+.footer-about-logo {
+  display: flex;
+  align-items: center;
+  color: rgb(255, 56, 92);
+  gap: 0.5rem;
+}
+
+.splash-contact {
+  color: lightgrey;
+}
+
+.splash-contact:hover {
+  color: rgb(255, 56, 92);
+}
