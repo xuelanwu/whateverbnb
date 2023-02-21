@@ -4,7 +4,6 @@
 }
 
 .search-container {
-  width: 100%;
   background-color: white;
   padding: 10px 20px;
   border: 1px solid #dddddd;
@@ -39,11 +38,11 @@
 }
 
 .filter-form {
-  width: 100%;
+  width: 25rem;
   position: absolute;
-  left: 0;
   top: 120%;
-  padding: 1rem 0.5rem;
+  left: -2rem;
+  padding: 1rem 1rem;
   background-color: white;
   border: 1px solid rgb(221, 221, 221);
   border-radius: 0.75rem;
@@ -56,6 +55,15 @@
   padding: 0.5rem 0;
 }
 
+.filter-form-block:first-of-type {
+  padding-top: 0;
+}
+
+.filter-keyword-box {
+  width: 100%;
+}
+
+.filter-keyword-box,
 .filter-price-box {
   display: flex;
   flex-direction: column;
@@ -66,12 +74,14 @@
   padding: 0.5rem;
 }
 
-.filter-price-box label {
+.filter-price-box label,
+.filter-keyword-box label {
   color: rgb(113, 113, 113);
   font-size: 0.8rem;
   font-weight: 400;
 }
 
+.filter-keyword-box input,
 .filter-price-box input {
   width: 100%;
   outline: none;

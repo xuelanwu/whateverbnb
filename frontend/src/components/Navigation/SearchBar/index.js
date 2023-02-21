@@ -6,6 +6,11 @@ import "./index.css";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
+
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
+
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [errors, setErrors] = useState([]);
@@ -22,7 +27,14 @@ const SearchBar = () => {
 
     const closeMenu = (e) => {
       const name = e.target.name;
-      if (name !== "minPrice" && name !== "maxPrice") setShowMenu(false);
+      if (
+        name !== "minPrice" &&
+        name !== "maxPrice" &&
+        name !== "city" &&
+        name !== "state" &&
+        name !== "country"
+      )
+        setShowMenu(false);
     };
 
     document.addEventListener("click", closeMenu);
@@ -46,7 +58,9 @@ const SearchBar = () => {
 
   const handleSearch = (e) => {
     if (errors.length > 0) return;
-    return dispatch(fetchFilteredSpots({ minPrice, maxPrice }));
+    return dispatch(
+      fetchFilteredSpots({ minPrice, maxPrice, city, state, country })
+    );
   };
 
   return (
@@ -57,10 +71,10 @@ const SearchBar = () => {
             Anywhere
           </button>
           <button className="search-button" onClick={openMenu}>
-            Any week
+            Any price
           </button>
           <button className="search-button" onClick={openMenu}>
-            Add guests
+            Search
           </button>
           <button className="search-icon">
             <i className="fa-solid fa-magnifying-glass"></i>
@@ -75,6 +89,42 @@ const SearchBar = () => {
                 <li key={`filterError-${idx + 1}`}>{error}</li>
               ))}
             </ul>
+          </div>
+          <div className="filter-form-block">
+            <div className="filter-keyword-box">
+              <label htmlFor="city">City</label>
+              <div className="filter-keyword-input-box">
+                <input
+                  name="city"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="filter-form-block">
+            <div className="filter-keyword-box">
+              <label htmlFor="state">State</label>
+              <div className="filter-keyword-input-box">
+                <input
+                  name="state"
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="filter-form-block">
+            <div className="filter-keyword-box">
+              <label htmlFor="country">Country</label>
+              <div className="filter-keyword-input-box">
+                <input
+                  name="country"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                />
+              </div>
+            </div>
           </div>
           <div className="filter-form-block">
             <div className="filter-price-box">

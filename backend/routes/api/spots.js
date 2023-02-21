@@ -66,8 +66,23 @@ const handleAllSpotsReponse = async (spots) => {
 router.get("/", async (req, res, next) => {
   let query = {};
   let where = {};
-  let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } =
-    req.query;
+  let {
+    page,
+    size,
+    minLat,
+    maxLat,
+    minLng,
+    maxLng,
+    minPrice,
+    maxPrice,
+    city,
+    state,
+    country,
+  } = req.query;
+
+  if (city) where.city = { [Op.substring]: city };
+  if (state) where.state = { [Op.substring]: state };
+  if (country) where.country = { [Op.substring]: country };
 
   if (page) page = parseInt(page);
   if (size) size = parseInt(size);

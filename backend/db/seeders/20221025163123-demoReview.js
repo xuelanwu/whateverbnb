@@ -5,55 +5,56 @@ const demoReviews = [
     spotId: 1,
     userId: 4,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "We had an amazing stay at this beautiful cottage! The location was perfect, tucked away in a quiet corner with breathtaking views of the mountains.",
     stars: 5,
   },
   {
     spotId: 1,
     userId: 2,
     review:
-      "Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam. Sed risus ultricies tristique nulla aliquet. Adipiscing elit pellentesque habitant morbi tristique senectus et.",
+      "The cottage itself was cozy and well-equipped with everything we needed for a comfortable stay. We especially loved the fireplace, which added to the rustic charm of the place.",
     stars: 4,
   },
   {
     spotId: 1,
     userId: 3,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam.",
+      "Our hosts were friendly and accommodating, and made sure we had everything we needed. We can't wait to come back!",
     stars: 3,
   },
   {
     spotId: 2,
     userId: 1,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "The Serenity Cottage was a dream come true. Peaceful, relaxing, and with all the amenities we needed. Highly recommend!",
     stars: 2,
   },
   {
     spotId: 2,
     userId: 3,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque.",
+      "Lakeside Haven was just what we needed for a relaxing weekend. Clean, well-equipped, and with stunning views of the lake. Highly recommend!",
     stars: 1,
   },
   {
     spotId: 2,
     userId: 4,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam.",
+      "Rustic Charm Cabin was an absolute delight. Loved the cozy feel and the beautiful surroundings. Can't wait to come back!",
     stars: 1,
   },
   {
     spotId: 3,
     userId: 4,
     review:
-      "Sed risus ultricies tristique nulla aliquet. Adipiscing elit pellentesque habitant morbi tristique senectus et.",
+      "The City Lights Oasis exceeded our expectations. Close to all the best restaurants and nightlife, but quiet and comfortable. Great hosts too!",
     stars: 4,
   },
   {
     spotId: 3,
     userId: 5,
-    review: "Vivamus posuere euismod rhoncus.",
+    review:
+      "Coastal Escape was the perfect retreat for our family. The beach was just steps away and the house was beautifully decorated. We loved our stay!",
     stars: 3,
   },
 ];

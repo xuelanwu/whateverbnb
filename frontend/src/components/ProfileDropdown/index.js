@@ -2,6 +2,8 @@ import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { logout } from "../../store/session";
+
+import CreateSpotModal from "../Navigation/CreateSpotModal";
 import "./index.css";
 
 const ProfileButton = ({ user, setLogin, setShowModal }) => {
@@ -69,6 +71,14 @@ const ProfileButton = ({ user, setLogin, setShowModal }) => {
             </li>
             <li className="profile-dropdown-menu-button-box">
               <button
+                className="profile-dropdown-button wishlist disabled"
+                disabled
+              >
+                My Wishlist
+              </button>
+            </li>
+            <li className="profile-dropdown-menu-button-box">
+              <button
                 onClick={handleLogout}
                 className="profile-dropdown-button"
               >
@@ -98,6 +108,34 @@ const ProfileButton = ({ user, setLogin, setShowModal }) => {
                 }}
               >
                 Log In
+              </button>
+            </li>
+            <li className="profile-dropdown-menu-divider"></li>
+            <li className="profile-dropdown-menu-button-box">
+              <button
+                className="profile-dropdown-button login"
+                onClick={() => {
+                  setLogin(true);
+                  setShowModal(true);
+                }}
+              >
+                Airbnb your home
+              </button>
+            </li>
+            <li className="profile-dropdown-menu-button-box">
+              <button
+                className="profile-dropdown-button experience disabled"
+                disabled
+              >
+                Host your experience
+              </button>
+            </li>
+            <li className="profile-dropdown-menu-button-box">
+              <button
+                className="profile-dropdown-button help disabled"
+                disabled
+              >
+                help
               </button>
             </li>
           </ul>

@@ -20,9 +20,9 @@ const Navigation = ({ isLoaded }) => {
   const location = useLocation();
   const path = location.pathname;
 
-  const handleClick = () => {
-    history.push("/page-not-found");
-  };
+  // const handleClick = () => {
+  //   history.push("/page-not-found");
+  // };
 
   return (
     <div className="nav-container">
@@ -37,13 +37,13 @@ const Navigation = ({ isLoaded }) => {
         {path === "/" && <SearchBar />}
         <div className="nav-block-buttons nav-buttons">
           <li className="nav-items nav-create-spot">
-            <CreateSpotModal />
+            {user && <CreateSpotModal />}
           </li>
-          <li className="nav-items globe-icon">
+          {/* <li className="nav-items globe-icon">
             <div className="globe-icon-box" onClick={handleClick}>
               <i className="fa-solid fa-globe"></i>
             </div>
-          </li>
+          </li> */}
           <li className="nav-items dropdown">
             {isLoaded && (
               <ProfileButton
