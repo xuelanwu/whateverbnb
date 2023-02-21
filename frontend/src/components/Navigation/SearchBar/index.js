@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { fetchFilteredSpots } from "../../../store/spot";
 
@@ -6,6 +6,7 @@ import "./index.css";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
+  const filterFormRef = useRef();
 
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -26,17 +27,7 @@ const SearchBar = () => {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      const name = e.target.name;
-      const value = e.target.value;
-      if (
-        name !== "minPrice" &&
-        name !== "maxPrice" &&
-        name !== "city" &&
-        name !== "state" &&
-        name !== "country" &&
-        value !== "search"
-      )
-        setShowMenu(false);
+      if (!filterFormRef.current.contains(e.target)) setShowMenu(false);
     };
 
     document.addEventListener("click", closeMenu);
@@ -98,7 +89,7 @@ const SearchBar = () => {
         </div>
       </li>
       {showMenu && (
-        <form className="filter-form">
+        <form className="filter-form" ref={filterFormRef}>
           <div className="filter-form-block">
             <ul className="filter-error">
               {errors.map((error, idx) => (

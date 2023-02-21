@@ -51,6 +51,51 @@ const demoSpotImages = [
     url: "https://images.pexels.com/photos/1559825/pexels-photo-1559825.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
     preview: true,
   },
+  {
+    spotId: 6,
+    url: "https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    preview: true,
+  },
+  {
+    spotId: 7,
+    url: "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    preview: true,
+  },
+  {
+    spotId: 8,
+    url: "https://images.pexels.com/photos/2581922/pexels-photo-2581922.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    preview: true,
+  },
+  {
+    spotId: 9,
+    url: "https://images.pexels.com/photos/463734/pexels-photo-463734.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    preview: true,
+  },
+  {
+    spotId: 10,
+    url: "https://images.pexels.com/photos/2360673/pexels-photo-2360673.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    preview: true,
+  },
+  {
+    spotId: 11,
+    url: "https://images.pexels.com/photos/950058/pexels-photo-950058.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    preview: true,
+  },
+  {
+    spotId: 12,
+    url: "https://images.pexels.com/photos/3617496/pexels-photo-3617496.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    preview: true,
+  },
+  {
+    spotId: 13,
+    url: "https://images.pexels.com/photos/15470196/pexels-photo-15470196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    preview: true,
+  },
+  {
+    spotId: 14,
+    url: "https://images.pexels.com/photos/463996/pexels-photo-463996.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    preview: true,
+  },
 ];
 
 /** @type {import('sequelize-cli').Migration} */
