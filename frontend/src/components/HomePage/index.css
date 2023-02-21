@@ -1,10 +1,10 @@
 .spot-card-container {
-  padding-top: 3em;
-  width: 80vw;
+  width: 90vw;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 2.5vw;
+  gap: 3vw;
+  padding: 3rem 0;
 }
 
 .spot-card-container li {
@@ -21,13 +21,13 @@
 }
 
 .spot-card-image-box {
-  width: 25vw;
-  height: 25vw;
+  width: 28vw;
+  height: 28vw;
 }
 
 .spot-card-image-box img {
-  width: 25vw;
-  height: 25vw;
+  width: 28vw;
+  height: 28vw;
   border-radius: 10px;
 }
 
